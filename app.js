@@ -48,7 +48,7 @@ function logoMark() {
 }
 function renderNav(active) {
   const links = [
-    ['index.html', 'Acasă'], ['catalog.html', 'Catalog'], ['rate.html', 'Rate 0%'],
+    ['index.html', 'Acasă'], ['catalog.html', 'Catalog'], ['rate.html', 'Rate'],
     ['service.html', 'Service'], ['vinde.html', 'Schimb'], ['contact.html', 'Contact'],
   ];
   document.getElementById('nav').innerHTML = `
@@ -66,7 +66,7 @@ function renderNav(active) {
 
 // ---------- scoreline (ticker) ----------
 function renderScoreline(el) {
-  const items = ['Garanție 2 ani', 'Retur gratuit 30 de zile', 'Livrare în 24h', 'Rate 0% prin 4 bănci', 'Testat în formă de meci'];
+  const items = ['Garanție 2 ani', 'Retur gratuit 30 de zile', 'Livrare în 24h', 'Plata în rate prin 4 bănci', 'Testat în formă de meci'];
   const half = items.map(t => `<span>${t}</span><i>●</i>`).join('');
   el.innerHTML = `<div class="scoreline-track">${half}${half}</div>`;
 }
@@ -90,7 +90,7 @@ function renderFooter(el) {
       <li><a href="vinde.html">Schimbă-ți telefonul</a></li>
       <li><a href="service.html">Service iPhone</a></li>
       <li><a href="service.html#samsung">Service Samsung</a></li>
-      <li><a href="rate.html">Rate fără dobândă</a></li>
+      <li><a href="rate.html">Plata în rate</a></li>
       <li><a href="politici.html">Politici & garanții</a></li>
     </ul></div>
     <div><h5>Contact</h5><ul>
