@@ -143,6 +143,8 @@ section{padding:110px 4vw}
 .prod-visual{height:180px;border-radius:14px;background:var(--cream-2);display:grid;place-items:center;font-size:3.4rem;margin-bottom:16px;position:relative;overflow:hidden}
 .prod-visual::after{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(216,255,62,.0),rgba(216,255,62,.25));opacity:0;transition:opacity .3s}
 .prod-card:hover .prod-visual::after{opacity:1}
+.prod-visual img{max-width:78%;max-height:86%;object-fit:contain;mix-blend-mode:multiply;transition:transform .35s cubic-bezier(.22,1,.36,1)}
+.prod-card:hover .prod-visual img{transform:scale(1.06)}
 .prod-tag{position:absolute;top:16px;left:16px;background:var(--ink);color:var(--lime);font-size:.68rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:5px 12px;border-radius:100px;z-index:1}
 .prod-card h4{font-family:var(--font-d);font-size:1.12rem;font-weight:600;letter-spacing:-.01em}
 .prod-state{font-size:.8rem;color:#74766a}
@@ -292,7 +294,7 @@ footer{padding:80px 4vw 40px;background:var(--ink)}
     <h2 class="section-title">Nou <em>în stoc</em></h2>
     <span class="section-num">(02) — Verificate & igienizate</span>
   </div>
-  <div class="prod-grid">
+  <div class="prod-grid" id="prodGrid">
     <article class="prod-card reveal" data-href="https://yzzy.ro/magazin/categorie-telefoane/">
       <div class="prod-visual"><span class="prod-tag">-31%</span>📱</div>
       <h4>iPhone 14 Pro · 128 GB</h4>
@@ -425,7 +427,34 @@ footer{padding:80px 4vw 40px;background:var(--ink)}
   </div>
 </footer>
 
+<script src="products.js"></script>
 <script>
+// produse reale din Store API-ul yzzy.ro, coapte in products.js la build;
+// gasit pe acelasi domeniu cu magazinul, fetch-ul live de mai jos le actualizeaza
+const fmtLei=v=>new Intl.NumberFormat('ro-RO',{maximumFractionDigits:2}).format(v/100)+' lei';
+function renderProducts(list){
+  const grid=document.getElementById('prodGrid');
+  if(!grid||!list||!list.length)return;
+  grid.innerHTML=list.map(p=>{
+    const pr=p.prices,sale=p.on_sale&&pr.regular_price!==pr.price;
+    const tag=sale?('-'+Math.round((1-pr.price/pr.regular_price)*100)+'%'):p.condition;
+    return `<article class="prod-card reveal in" data-href="${p.url}">
+      <div class="prod-visual"><span class="prod-tag">${tag}</span><img src="${p.image}" alt="${p.name}"></div>
+      <h4>${p.name}</h4>
+      <span class="prod-state">Stare: ${p.condition} · Garanție 2 ani</span>
+      <div class="prod-foot"><span class="prod-price">${sale?`<s>${fmtLei(pr.regular_price)}</s>`:''}${fmtLei(pr.price)}</span><button class="prod-add" aria-label="Vezi produsul">+</button></div>
+    </article>`}).join('');
+}
+renderProducts(window.YZZY_PRODUCTS);
+document.getElementById('prodGrid').addEventListener('click',e=>{
+  const c=e.target.closest('.prod-card[data-href]');
+  if(c)location.href=c.dataset.href;
+});
+fetch('https://yzzy.ro/wp-json/wc/store/v1/products?per_page=8&orderby=date&order=desc')
+  .then(r=>r.json())
+  .then(d=>renderProducts(d.map(p=>({name:p.name,condition:'Verificat YZZY',prices:p.prices,on_sale:p.on_sale,image:p.images[0]?.thumbnail||p.images[0]?.src,url:p.permalink}))))
+  .catch(()=>{});
+
 // nav scroll state
 const nav=document.getElementById('nav');
 addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>40),{passive:true});
