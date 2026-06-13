@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Finalizează comanda — YZZY</title>
+<link rel="stylesheet" href="theme.css?v=1">
+<style>
+.pay{padding:120px 4vw 90px;max-width:1100px;margin:0 auto}
+.pay h1{font-size:clamp(2rem,5vw,3.6rem);margin-bottom:8px}
+.pay-sub{font-family:var(--f-mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ash);margin-bottom:40px}
+.pay-grid{display:grid;grid-template-columns:1fr 380px;gap:28px;align-items:start}
+@media(max-width:900px){.pay-grid{grid-template-columns:1fr}}
+.fieldset{background:var(--surf);border:1px solid var(--line);border-radius:var(--radius);padding:26px;margin-bottom:18px}
+.fieldset h3{font-family:var(--f-display);text-transform:uppercase;font-size:1.1rem;margin-bottom:6px;display:flex;align-items:center;gap:10px;letter-spacing:.01em}
+.fieldset h3 .step{width:26px;height:26px;border-radius:50%;background:var(--lime);color:var(--court);display:grid;place-items:center;font-size:.8rem;font-family:var(--f-display)}
+.fieldset p.hint{font-family:var(--f-mono);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ash);margin-bottom:18px}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.frow.one{grid-template-columns:1fr}
+label{display:block;font-family:var(--f-mono);font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ash);margin-bottom:6px}
+input,select{width:100%;background:var(--court);border:1.5px solid var(--line);color:var(--chalk);font-family:var(--f-text);font-size:.92rem;padding:12px 14px;border-radius:10px;outline:none;transition:border-color .2s}
+input:focus,select:focus{border-color:var(--lime)}
+.pay-methods{display:flex;flex-direction:column;gap:10px}
+.pm{display:flex;align-items:center;gap:14px;border:1.5px solid var(--line);border-radius:12px;padding:14px 16px;cursor:none;transition:border-color .2s,background .2s}
+.pm:hover{border-color:var(--ash)}
+.pm.active{border-color:var(--lime);background:var(--turf)}
+.pm input{width:auto}
+.pm .pm-label{flex:1}
+.pm .pm-label b{display:block;font-size:.94rem}
+.pm .pm-label span{font-family:var(--f-mono);font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ash)}
+.rate-detail{display:none;padding:16px;background:var(--court);border-radius:10px;margin-top:6px}
+.rate-detail.show{display:block}
+.rate-detail .partners{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px}
+.rate-detail .partners a{background:var(--chalk);border-radius:8px;padding:10px;display:grid;place-items:center;min-height:50px;transition:transform .2s}
+.rate-detail .partners a:hover{transform:translateY(-2px)}
+.rate-detail .partners img{max-height:26px;max-width:100%}
+.rate-months{display:flex;gap:8px;margin:10px 0;flex-wrap:wrap}
+.rate-months button{font-family:var(--f-mono);font-size:.66rem;padding:8px 14px;border-radius:100px;border:1.5px solid var(--line);background:none;color:var(--ash);cursor:none}
+.rate-months button.active{background:var(--lime);color:var(--court);border-color:var(--lime)}
+.rate-out{font-family:var(--f-display);color:var(--lime);font-size:1.5rem;letter-spacing:.02em}
+.pass{background:var(--surf);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;position:sticky;top:90px}
+.pass-head{background:var(--turf);padding:18px 22px;border-bottom:1px dashed var(--line);display:flex;justify-content:space-between;align-items:center}
+.pass-head b{font-family:var(--f-display);text-transform:uppercase;font-size:1rem;letter-spacing:.01em}
+.pass-head .code{font-family:var(--f-mono);font-size:.62rem;letter-spacing:.1em;color:var(--lime)}
+.pass-body{padding:22px}
+.pass-item{display:flex;justify-content:space-between;gap:12px;padding:8px 0;font-size:.84rem;color:var(--ash);border-bottom:1px solid var(--line)}
+.pass-item:last-of-type{border-bottom:none}
+.pass-item b{color:var(--chalk);font-weight:400}
+.pass-item .q{font-family:var(--f-mono);font-size:.6rem;color:var(--lime)}
+.pass-total{display:flex;justify-content:space-between;border-top:1px dashed var(--line);margin-top:10px;padding-top:16px;font-family:var(--f-display);font-size:1.5rem;letter-spacing:.02em}
+.pass-total span:last-child{color:var(--lime)}
+.note{font-family:var(--f-mono);font-size:.56rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ash);text-align:center;margin-top:14px;line-height:1.6}
+.confirm{display:none;text-align:center;padding:40px 0}
+.confirm.show{display:block}
+.confirm .tick{width:84px;height:84px;border-radius:50%;background:var(--lime);color:var(--court);display:grid;place-items:center;font-size:2.6rem;margin:0 auto 24px;font-family:var(--f-display)}
+.confirm h2{font-size:clamp(2rem,5vw,3.4rem);margin-bottom:12px}
+.confirm p{color:var(--ash);max-width:420px;margin:0 auto 8px}
+.confirm .pnr{font-family:var(--f-display);color:var(--lime);font-size:1.8rem;margin:18px 0;letter-spacing:.04em}
+</style>
+</head>
+<body>
+<nav id="nav"></nav>
+
+<main class="pay">
+  <span class="sec-num" style="display:block;margin-bottom:12px"><b>FINALIZARE</b> · PUNCTUL DE MECI</span>
+  <h1 class="display" id="payTitle">Punctul <em class="lime">de meci</em></h1>
+  <p class="pay-sub" id="paySub">Completează datele — comandă demo, nu se procesează plată reală</p>
+  <div id="payBody"></div>
+</main>
+
+<footer id="footer"></footer>
+
+<script src="data/catalog.js?v=1"></script>
+<script src="app.js?v=1"></script>
+<script>
+renderNav('catalog.html');
+renderFooter(document.getElementById('footer'));
+
+const items=cart.map(it=>({...it,p:byId(it.id)})).filter(x=>x.p);
+const body=document.getElementById('payBody');
+
+if(!items.length){
+  body.innerHTML=`<div style="text-align:center;padding:60px 0">
+    <p class="display" style="font-size:2rem;color:var(--ash);margin-bottom:14px">Niciun jucător de finalizat.</p>
+    <a class="btn btn-lime" href="catalog.html">Înapoi pe teren →</a></div>`;
+}else{
+  const total=cartTotal();
+  body.innerHTML=`<div class="pay-grid">
+    <div>
+      <div class="fieldset">
+        <h3><span class="step">1</span> Jucător</h3>
+        <p class="hint">Cui îi livrăm lotul</p>
+        <div class="frow"><div><label>Nume</label><input id="fNume" placeholder="Andrei"></div><div><label>Prenume</label><input id="fPren" placeholder="Popescu"></div></div>
+        <div class="frow"><div><label>Email</label><input id="fMail" type="email" placeholder="andrei@email.ro"></div><div><label>Telefon</label><input id="fTel" placeholder="07xx xxx xxx"></div></div>
+      </div>
+      <div class="fieldset">
+        <h3><span class="step">2</span> Destinație</h3>
+        <p class="hint">Unde ajunge coletul</p>
+        <div class="frow one"><div><label>Adresă</label><input id="fAdr" placeholder="Str. Exemplu nr. 10, bl. A, ap. 5"></div></div>
+        <div class="frow"><div><label>Oraș</label><input id="fOras" placeholder="Suceava"></div><div><label>Județ</label><input id="fJud" placeholder="Suceava"></div></div>
+      </div>
+      <div class="fieldset">
+        <h3><span class="step">3</span> Plată</h3>
+        <p class="hint">Cum închizi meciul</p>
+        <div class="pay-methods">
+          <label class="pm active"><input type="radio" name="pm" value="card" checked><span class="pm-label"><b>Card online</b><span>Plată securizată Netopia</span></span></label>
+          <label class="pm"><input type="radio" name="pm" value="ramburs"><span class="pm-label"><b>Ramburs la livrare</b><span>Plătești curierului</span></span></label>
+          <label class="pm" id="pmRate"><input type="radio" name="pm" value="rate"><span class="pm-label"><b>Rate fără dobândă</b><span>Aprobare în câteva minute, 100% online</span></span></label>
+        </div>
+        <div class="rate-detail" id="rateDetail">
+          <p class="hint">Alege finanțatorul (te ducem pe pagina lui)</p>
+          <div class="partners">
+            <a href="https://yzzy.ro/credit-100-online-prin-unicredit-consumer-financing/" target="_blank" rel="noopener"><img src="https://yzzy.ro/wp-content/uploads/2025/02/logo-unicredit-contrast-alb-2.jpg" alt="UniCredit"></a>
+            <a href="https://yzzy.ro/" target="_blank" rel="noopener"><img src="https://yzzy.ro/wp-content/uploads/2025/02/Logo-Smart-by-BT-Direct-1-300x115.webp" alt="Smart by BT"></a>
+            <a href="https://yzzy.ro/regulament-leanpay/" target="_blank" rel="noopener"><img src="https://yzzy.ro/wp-content/uploads/2025/06/LP-logo-small-300x86.png" alt="LeanPay"></a>
+            <a href="https://yzzy.ro/" target="_blank" rel="noopener"><img src="https://yzzy.ro/wp-content/uploads/2025/02/tbi-bank-logo.webp" alt="TBI Bank"></a>
+          </div>
+          <div class="rate-months" id="rateMonths"></div>
+          <div>Rată estimată: <span class="rate-out" id="rateOut"></span> <span class="muted mono" style="font-size:.6rem">/lună · dobândă 0%</span></div>
+        </div>
+      </div>
+    </div>
+    <aside class="pass">
+      <div class="pass-head"><b>Scor final</b><span class="code">YZZY · 2026</span></div>
+      <div class="pass-body">
+        ${items.map(({p,qty})=>`<div class="pass-item"><b>${p.brand?p.brand+' ':''}${p.name}</b><span><span class="q">×${qty}</span> ${fmtLei(p.price*qty)}</span></div>`).join('')}
+        <div class="pass-item"><span>Livrare</span><b class="lime">Gratuită · 24h</b></div>
+        <div class="pass-total"><span>Total</span><span>${fmtLei(total)}</span></div>
+        <button class="btn btn-lime" id="placeBtn" style="width:100%;justify-content:center;margin-top:18px">Închide meciul →</button>
+        <p class="note">Demo de design.<br>Comanda reală se procesează pe platforma YZZY.</p>
+      </div>
+    </aside>
+  </div>`;
+
+  document.querySelectorAll('.pm input').forEach(r=>r.addEventListener('change',()=>{
+    document.querySelectorAll('.pm').forEach(x=>x.classList.remove('active'));
+    r.closest('.pm').classList.add('active');
+    document.getElementById('rateDetail').classList.toggle('show',r.value==='rate');
+  }));
+  const months=[6,12,18,24,36];
+  document.getElementById('rateMonths').innerHTML=months.map((m,i)=>`<button class="${i===1?'active':''}" data-m="${m}">${m} rate</button>`).join('');
+  const calcRate=m=>document.getElementById('rateOut').textContent=fmtLei(Math.round(total/m));
+  calcRate(12);
+  document.getElementById('rateMonths').addEventListener('click',e=>{
+    const b=e.target.closest('[data-m]');if(!b)return;
+    document.querySelectorAll('#rateMonths button').forEach(x=>x.classList.remove('active'));
+    b.classList.add('active');calcRate(+b.dataset.m);
+  });
+  document.getElementById('placeBtn').addEventListener('click',()=>{
+    const nume=document.getElementById('fNume').value.trim();
+    if(!nume){toast('<b>[ FAULT ]</b> Completează numele');document.getElementById('fNume').focus();return;}
+    const pnr='YZ'+Math.abs(total*7%99999).toString().padStart(5,'0');
+    cart=[];saveCart();updateCartBadge();
+    document.getElementById('payTitle').innerHTML='Game, set, <em class="lime">match.</em>';
+    document.getElementById('paySub').textContent='Mulțumim! Lotul tău e pe drum.';
+    body.innerHTML=`<div class="confirm show">
+      <div class="tick">✓</div>
+      <h2 class="display">Meci câștigat, ${nume}.</h2>
+      <p>Comanda ta a fost înregistrată. Vei primi un email cu detaliile și ai garanție 2 ani la fiecare produs.</p>
+      <div class="pnr">COD COMANDĂ · ${pnr}</div>
+      <p class="muted mono" style="font-size:.6rem">Aceasta este o comandă demo. Pe site-ul real, plata se procesează prin Netopia / partenerii de rate.</p>
+      <div style="margin-top:26px"><a class="btn btn-lime" href="catalog.html">Înapoi pe teren →</a></div>
+    </div>`;
+    scrollTo({top:0,behavior:'smooth'});
+  });
+}
+</script>
+</body>
+</html>

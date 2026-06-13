@@ -3,659 +3,266 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>YZZY — Tehnologie la a doua viață</title>
-<meta name="description" content="Telefoane second-hand verificate, testate și igienizate de profesioniști. Garanție 2 ani, retur gratuit 30 de zile, livrare în 24h.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<title>YZZY — Gata de joc · Telefoane recondiționate, garantate 2 ani</title>
+<meta name="description" content="Telefoane și gadgeturi recondiționate, aduse în formă de meci. Garanție 2 ani, retur gratuit 30 de zile, livrare în 24h, rate 0%.">
+<link rel="stylesheet" href="theme.css?v=1">
 <style>
-:root{
-  --ink:#0c0e0a;
-  --ink-2:#15170f;
-  --cream:#f1efe7;
-  --cream-2:#e7e4d8;
-  --lime:#d8ff3e;
-  --lime-dim:#b8dd2e;
-  --grey:#8a8c80;
-  --radius:22px;
-  --font-d:'Space Grotesk',sans-serif;
-  --font-b:'Inter',sans-serif;
-}
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
-  background:var(--ink);
-  color:var(--cream);
-  font-family:var(--font-b);
-  font-size:16px;
-  line-height:1.6;
-  overflow-x:hidden;
-  -webkit-font-smoothing:antialiased;
-}
-::selection{background:var(--lime);color:var(--ink)}
-
-/* ---------- grain overlay ---------- */
-body::after{
-  content:"";position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.05;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-
-/* ---------- cursor ---------- */
-.cursor{position:fixed;width:14px;height:14px;border-radius:50%;background:var(--lime);pointer-events:none;z-index:10000;transform:translate(-50%,-50%);transition:width .25s,height .25s,opacity .25s;mix-blend-mode:difference}
-.cursor.is-hover{width:54px;height:54px}
-@media(hover:none){.cursor{display:none}}
-
-/* ---------- nav ---------- */
-nav{
-  position:fixed;top:0;left:0;right:0;z-index:100;
-  display:flex;align-items:center;justify-content:space-between;
-  padding:20px 4vw;
-  transition:background .35s,backdrop-filter .35s,padding .35s;
-}
-nav.scrolled{background:rgba(12,14,10,.72);backdrop-filter:blur(18px);padding:13px 4vw;border-bottom:1px solid rgba(241,239,231,.07)}
-.logo{font-family:var(--font-d);font-weight:700;font-size:1.7rem;letter-spacing:-.04em;color:var(--cream);text-decoration:none}
-.logo span{color:var(--lime)}
-.nav-links{display:flex;gap:34px;list-style:none}
-.nav-links a{color:var(--cream);text-decoration:none;font-size:.86rem;font-weight:500;letter-spacing:.04em;text-transform:uppercase;opacity:.75;transition:opacity .2s}
-.nav-links a:hover{opacity:1}
-.nav-cta{display:flex;gap:12px;align-items:center}
-.btn{
-  display:inline-flex;align-items:center;gap:10px;
-  font-family:var(--font-d);font-weight:600;font-size:.92rem;
-  padding:13px 26px;border-radius:100px;text-decoration:none;
-  border:1px solid transparent;cursor:pointer;transition:transform .25s cubic-bezier(.34,1.56,.64,1),background .25s,color .25s;
-}
-.btn:hover{transform:scale(1.05)}
-.btn-lime{background:var(--lime);color:var(--ink)}
-.btn-lime:hover{background:var(--cream)}
-.btn-ghost{border-color:rgba(241,239,231,.25);color:var(--cream)}
-.btn-ghost:hover{border-color:var(--lime);color:var(--lime)}
-.btn-dark{background:var(--ink);color:var(--cream)}
-.btn-dark:hover{background:var(--ink-2)}
-@media(max-width:900px){.nav-links{display:none}}
-
-/* ---------- hero ---------- */
-.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;position:relative;padding:140px 4vw 0}
-.hero-bg{position:absolute;inset:0;overflow:hidden;pointer-events:none}
-.hero-glow{position:absolute;top:-30%;right:-15%;width:70vw;height:70vw;border-radius:50%;
-  background:radial-gradient(circle,rgba(216,255,62,.13) 0%,transparent 62%)}
-.hero-glow.g2{top:auto;right:auto;bottom:-40%;left:-20%;background:radial-gradient(circle,rgba(216,255,62,.07) 0%,transparent 60%)}
-.hero-kicker{display:inline-flex;align-items:center;gap:10px;font-size:.82rem;letter-spacing:.18em;text-transform:uppercase;color:var(--lime);margin-bottom:28px;font-weight:600}
-.hero-kicker::before{content:"";width:34px;height:1px;background:var(--lime)}
-.hero h1{
-  font-family:var(--font-d);font-weight:700;
-  font-size:clamp(3.1rem,10.5vw,9.5rem);
-  line-height:.93;letter-spacing:-.045em;
-  text-transform:uppercase;
-}
-.hero h1 .outline{color:transparent;-webkit-text-stroke:1.5px var(--cream)}
-.hero h1 .accent{color:var(--lime);font-style:italic}
-.hero-row{display:flex;align-items:flex-end;justify-content:space-between;gap:40px;margin-top:46px;padding-bottom:64px;flex-wrap:wrap}
-.hero-sub{max-width:420px;color:var(--grey);font-size:1.05rem}
-.hero-sub strong{color:var(--cream);font-weight:600}
-.hero-actions{display:flex;gap:14px;flex-wrap:wrap}
-.line-mask{display:block;overflow:hidden}
-.line-mask>span{display:block;animation:rise 1s cubic-bezier(.22,1,.36,1) backwards}
-.line-mask:nth-child(2)>span{animation-delay:.1s}
-.line-mask:nth-child(3)>span{animation-delay:.2s}
-@keyframes rise{from{transform:translateY(110%)}to{transform:translateY(0)}}
-
-/* ---------- marquee ---------- */
-.marquee{border-top:1px solid rgba(241,239,231,.1);border-bottom:1px solid rgba(241,239,231,.1);overflow:hidden;padding:20px 0;background:var(--ink)}
-.marquee-track{display:flex;gap:54px;width:max-content;animation:scroll 28s linear infinite}
-.marquee-item{display:flex;align-items:center;gap:54px;font-family:var(--font-d);font-size:1.05rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;color:var(--cream)}
-.marquee-item i{font-style:normal;color:var(--lime)}
-@keyframes scroll{to{transform:translateX(-50%)}}
-
-/* ---------- shared section bits ---------- */
-section{padding:110px 4vw}
-.section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:30px;margin-bottom:60px;flex-wrap:wrap}
-.section-title{font-family:var(--font-d);font-weight:700;font-size:clamp(2.2rem,5vw,4.2rem);letter-spacing:-.04em;line-height:1;text-transform:uppercase}
-.section-title em{font-style:italic;color:var(--lime)}
-.section-num{font-family:var(--font-d);color:var(--grey);font-size:.9rem;letter-spacing:.2em}
-.reveal{opacity:0;transform:translateY(44px);transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1)}
-.reveal.in{opacity:1;transform:none}
-
-/* ---------- categories ---------- */
-.cat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-.cat-card{
-  position:relative;border:1px solid rgba(241,239,231,.12);border-radius:var(--radius);
-  padding:34px 28px;min-height:230px;display:flex;flex-direction:column;justify-content:space-between;
-  text-decoration:none;color:var(--cream);overflow:hidden;transition:border-color .3s,background .3s;
-  background:linear-gradient(160deg,rgba(241,239,231,.04),transparent 55%);
-}
-.cat-card:hover{border-color:var(--lime);background:linear-gradient(160deg,rgba(216,255,62,.08),transparent 55%)}
-.cat-card .emoji{font-size:2.1rem}
-.cat-card h3{font-family:var(--font-d);font-size:1.45rem;font-weight:600;letter-spacing:-.02em}
-.cat-card p{color:var(--grey);font-size:.88rem;margin-top:4px}
-.cat-card .arrow{position:absolute;top:26px;right:26px;width:38px;height:38px;border:1px solid rgba(241,239,231,.2);border-radius:50%;display:grid;place-items:center;font-size:1rem;transition:background .3s,color .3s,transform .3s}
-.cat-card:hover .arrow{background:var(--lime);color:var(--ink);transform:rotate(45deg);border-color:var(--lime)}
-@media(max-width:1000px){.cat-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:560px){.cat-grid{grid-template-columns:1fr}}
-
-/* ---------- products ---------- */
-.products{background:var(--cream);color:var(--ink);border-radius:48px 48px 0 0}
-.products .section-title em{color:#5a7d0a}
-.products .section-num{color:#9a988c}
-.prod-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-.prod-card{background:#fff;border-radius:var(--radius);padding:26px;display:flex;flex-direction:column;gap:6px;transition:transform .35s cubic-bezier(.22,1,.36,1),box-shadow .35s;cursor:pointer;position:relative}
-.prod-card:hover{transform:translateY(-8px);box-shadow:0 24px 48px -18px rgba(12,14,10,.22)}
-.prod-visual{height:180px;border-radius:14px;background:var(--cream-2);display:grid;place-items:center;font-size:3.4rem;margin-bottom:16px;position:relative;overflow:hidden}
-.prod-visual::after{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(216,255,62,.0),rgba(216,255,62,.25));opacity:0;transition:opacity .3s}
-.prod-card:hover .prod-visual::after{opacity:1}
-.prod-visual img{max-width:78%;max-height:86%;object-fit:contain;mix-blend-mode:multiply;transition:transform .35s cubic-bezier(.22,1,.36,1)}
-.prod-card:hover .prod-visual img{transform:scale(1.06)}
-.prod-tag{position:absolute;top:16px;left:16px;background:var(--ink);color:var(--lime);font-size:.68rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:5px 12px;border-radius:100px;z-index:1}
-.prod-card h4{font-family:var(--font-d);font-size:1.12rem;font-weight:600;letter-spacing:-.01em}
-.prod-state{font-size:.8rem;color:#74766a}
-.prod-foot{display:flex;align-items:center;justify-content:space-between;margin-top:14px}
-.prod-price{font-family:var(--font-d);font-weight:700;font-size:1.25rem}
-.prod-price s{font-size:.8rem;color:#a3a195;font-weight:400;margin-right:8px}
-.prod-add{width:40px;height:40px;border-radius:50%;background:var(--ink);color:var(--lime);border:none;font-size:1.2rem;cursor:pointer;display:grid;place-items:center;transition:transform .25s,background .25s}
-.prod-add:hover{transform:scale(1.12)}
-@media(max-width:1000px){.prod-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:560px){.prod-grid{grid-template-columns:1fr}}
-
-/* ---------- trust strip in products ---------- */
-.trust-strip{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:64px}
-.trust-item{border:1px solid rgba(12,14,10,.14);border-radius:16px;padding:20px 18px;display:flex;flex-direction:column;gap:4px}
-.trust-item b{font-family:var(--font-d);font-size:1rem;letter-spacing:-.01em}
-.trust-item span{font-size:.78rem;color:#74766a}
-@media(max-width:1000px){.trust-strip{grid-template-columns:repeat(2,1fr)}}
-
-/* ---------- sell ---------- */
-.sell{background:var(--cream);color:var(--ink);padding-top:0}
-.sell-inner{background:var(--ink);color:var(--cream);border-radius:40px;padding:90px 5vw;position:relative;overflow:hidden}
-.sell-inner::before{content:"";position:absolute;top:-40%;right:-10%;width:55vw;height:55vw;border-radius:50%;background:radial-gradient(circle,rgba(216,255,62,.16),transparent 62%)}
-.sell-head{position:relative;max-width:760px;margin-bottom:70px}
-.sell-head p{color:var(--grey);margin-top:18px;max-width:480px}
-.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;position:relative}
-.step{border:1px solid rgba(241,239,231,.13);border-radius:var(--radius);padding:34px 28px;background:rgba(241,239,231,.03);transition:border-color .3s}
-.step:hover{border-color:var(--lime)}
-.step-num{font-family:var(--font-d);font-size:.85rem;color:var(--lime);letter-spacing:.2em;margin-bottom:50px;display:block}
-.step h3{font-family:var(--font-d);font-size:1.5rem;font-weight:600;letter-spacing:-.02em;margin-bottom:10px}
-.step p{color:var(--grey);font-size:.92rem}
-.sell-cta{margin-top:54px;position:relative}
-@media(max-width:900px){.steps{grid-template-columns:1fr}}
-
-/* ---------- big number stats ---------- */
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;border-top:1px solid rgba(241,239,231,.1);padding-top:80px}
-.stat b{font-family:var(--font-d);font-size:clamp(3rem,6vw,5.4rem);font-weight:700;letter-spacing:-.04em;color:var(--lime);display:block;line-height:1}
-.stat span{color:var(--grey);font-size:.92rem;display:block;margin-top:10px}
-@media(max-width:760px){.stats{grid-template-columns:1fr;gap:44px}}
-
-/* ---------- testimonials ---------- */
-.test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.test-card{border:1px solid rgba(241,239,231,.12);border-radius:var(--radius);padding:34px 30px;display:flex;flex-direction:column;gap:18px;background:linear-gradient(160deg,rgba(241,239,231,.04),transparent 60%)}
-.test-stars{color:var(--lime);letter-spacing:4px;font-size:.95rem}
-.test-card p{color:var(--cream);font-size:1rem;line-height:1.65}
-.test-who{display:flex;align-items:center;gap:13px;margin-top:auto}
-.test-avatar{width:42px;height:42px;border-radius:50%;background:var(--lime);color:var(--ink);font-family:var(--font-d);font-weight:700;display:grid;place-items:center;font-size:.95rem}
-.test-who b{font-size:.92rem;display:block}
-.test-who span{font-size:.78rem;color:var(--grey)}
-@media(max-width:900px){.test-grid{grid-template-columns:1fr}}
-
-/* ---------- FAQ ---------- */
-.faq{max-width:880px;margin:0 auto}
-.faq-item{border-bottom:1px solid rgba(241,239,231,.12)}
-.faq-q{width:100%;background:none;border:none;color:var(--cream);font-family:var(--font-d);font-size:clamp(1.05rem,2.2vw,1.45rem);font-weight:600;letter-spacing:-.01em;text-align:left;padding:30px 0;display:flex;justify-content:space-between;align-items:center;gap:20px;cursor:pointer}
-.faq-q .ic{flex:none;width:34px;height:34px;border:1px solid rgba(241,239,231,.25);border-radius:50%;display:grid;place-items:center;font-size:1.1rem;transition:transform .35s,background .35s,color .35s}
-.faq-item.open .faq-q .ic{transform:rotate(45deg);background:var(--lime);color:var(--ink);border-color:var(--lime)}
-.faq-a{max-height:0;overflow:hidden;transition:max-height .45s cubic-bezier(.22,1,.36,1)}
-.faq-a p{color:var(--grey);padding:0 56px 30px 0;font-size:.98rem}
-
-/* ---------- final CTA ---------- */
-.final{background:var(--lime);color:var(--ink);border-radius:48px 48px 0 0;text-align:center;padding:120px 4vw}
-.final h2{font-family:var(--font-d);font-weight:700;font-size:clamp(2.6rem,7.5vw,6.5rem);letter-spacing:-.045em;line-height:.95;text-transform:uppercase;margin-bottom:30px}
-.final p{max-width:480px;margin:0 auto 40px;font-weight:500}
-.final .btn-dark{font-size:1.05rem;padding:18px 38px}
-
-/* ---------- filtre categorie ---------- */
-.filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:42px}
-.pill{font-family:var(--font-d);font-weight:600;font-size:.85rem;padding:10px 20px;border-radius:100px;border:1px solid rgba(12,14,10,.18);background:none;color:var(--ink);cursor:pointer;transition:background .25s,color .25s,border-color .25s}
-.pill:hover{border-color:var(--ink)}
-.pill.active{background:var(--ink);color:var(--lime);border-color:var(--ink)}
-
-/* ---------- modal produs ---------- */
-.overlay{position:fixed;inset:0;background:rgba(12,14,10,.65);backdrop-filter:blur(8px);opacity:0;pointer-events:none;transition:opacity .35s;z-index:200}
-.overlay.show{opacity:1;pointer-events:auto}
-.modal{position:fixed;inset:0;z-index:210;display:grid;place-items:center;pointer-events:none;padding:20px}
-.modal-card{background:var(--cream);color:var(--ink);border-radius:28px;max-width:900px;width:100%;max-height:88vh;overflow:auto;display:grid;grid-template-columns:1fr 1fr;opacity:0;transform:translateY(34px) scale(.97);transition:opacity .4s,transform .45s cubic-bezier(.22,1,.36,1);pointer-events:none;position:relative}
-.modal.show .modal-card{opacity:1;transform:none;pointer-events:auto}
-.modal-close{position:absolute;top:18px;right:18px;width:40px;height:40px;border-radius:50%;border:1px solid rgba(12,14,10,.2);background:var(--cream);font-size:1.3rem;cursor:pointer;display:grid;place-items:center;z-index:1}
-.modal-visual{background:var(--cream-2);display:grid;place-items:center;min-height:380px;padding:30px}
-.modal-visual img{max-width:86%;max-height:340px;object-fit:contain;mix-blend-mode:multiply}
-.modal-info{padding:44px 40px;display:flex;flex-direction:column;gap:14px}
-.modal-info .prod-tag{position:static;align-self:flex-start}
-.modal-info h3{font-family:var(--font-d);font-size:1.7rem;font-weight:700;letter-spacing:-.02em;line-height:1.15}
-.modal-price{font-family:var(--font-d);font-weight:700;font-size:1.7rem}
-.modal-price s{font-size:1rem;color:#a3a195;font-weight:400;margin-right:10px}
-.modal-info p.desc{color:#74766a;font-size:.92rem}
-.modal-perks{list-style:none;display:flex;flex-direction:column;gap:8px;font-size:.9rem;margin:6px 0}
-.modal-perks li::before{content:"✦";color:#5a7d0a;margin-right:10px}
-.modal-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:auto;padding-top:10px}
-.btn-outline-ink{border:1px solid rgba(12,14,10,.3);color:var(--ink)}
-.btn-outline-ink:hover{border-color:var(--ink)}
-@media(max-width:760px){.modal-card{grid-template-columns:1fr}.modal-visual{min-height:260px}}
-
-/* ---------- cos demo ---------- */
-#cartBtn{position:relative}
-.cart-count{position:absolute;top:-7px;right:-7px;min-width:22px;height:22px;border-radius:100px;background:var(--lime);color:var(--ink);font-size:.7rem;font-weight:700;display:grid;place-items:center;padding:0 5px;font-family:var(--font-d)}
-.drawer{position:fixed;top:0;right:0;bottom:0;width:min(430px,94vw);background:var(--ink);color:var(--cream);z-index:230;transform:translateX(105%);transition:transform .5s cubic-bezier(.22,1,.36,1);display:flex;flex-direction:column;padding:26px;border-left:1px solid rgba(241,239,231,.1)}
-.drawer.show{transform:none}
-.drawer-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px}
-.drawer-head h4{font-family:var(--font-d);font-size:1.3rem;letter-spacing:-.02em}
-.drawer-close{width:38px;height:38px;border-radius:50%;border:1px solid rgba(241,239,231,.25);background:none;color:var(--cream);font-size:1.2rem;cursor:pointer}
-.drawer-items{flex:1;overflow:auto;display:flex;flex-direction:column;gap:14px}
-.d-item{display:flex;gap:14px;align-items:center;border:1px solid rgba(241,239,231,.1);border-radius:16px;padding:12px}
-.d-item .thumb{width:62px;height:62px;border-radius:10px;background:var(--cream);display:grid;place-items:center;flex:none}
-.d-item .thumb img{max-width:84%;max-height:84%;object-fit:contain;mix-blend-mode:multiply}
-.d-item b{font-size:.88rem;display:block;line-height:1.3}
-.d-item span{font-size:.82rem;color:var(--grey)}
-.d-item .rm{margin-left:auto;background:none;border:none;color:var(--grey);font-size:1.1rem;cursor:pointer}
-.d-item .rm:hover{color:var(--lime)}
-.drawer-empty{color:var(--grey);text-align:center;margin-top:40%}
-.drawer-foot{border-top:1px solid rgba(241,239,231,.12);padding-top:18px;margin-top:16px}
-.drawer-total{display:flex;justify-content:space-between;font-family:var(--font-d);font-weight:700;font-size:1.15rem;margin-bottom:14px}
-.drawer-note{font-size:.74rem;color:var(--grey);margin-top:10px;text-align:center}
-
-/* ---------- footer ---------- */
-footer{padding:80px 4vw 40px;background:var(--ink)}
-.foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:70px}
-.foot-grid h5{font-family:var(--font-d);font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;color:var(--grey);margin-bottom:18px}
-.foot-grid ul{list-style:none}
-.foot-grid li{margin-bottom:10px}
-.foot-grid a{color:var(--cream);text-decoration:none;font-size:.92rem;opacity:.8;transition:opacity .2s,color .2s}
-.foot-grid a:hover{opacity:1;color:var(--lime)}
-.foot-brand p{color:var(--grey);font-size:.9rem;max-width:280px;margin-top:14px}
-.foot-mega{font-family:var(--font-d);font-weight:700;font-size:clamp(4rem,16vw,15rem);letter-spacing:-.05em;line-height:.8;text-align:center;color:transparent;-webkit-text-stroke:1px rgba(241,239,231,.18);user-select:none;margin-bottom:50px}
-.foot-bottom{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;border-top:1px solid rgba(241,239,231,.1);padding-top:28px;font-size:.8rem;color:var(--grey)}
-@media(max-width:900px){.foot-grid{grid-template-columns:1fr 1fr}}
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:120px 4vw 0;position:relative;overflow:hidden}
+.hero-court{position:absolute;inset:0;pointer-events:none}
+.hero-court .baseline{position:absolute;left:4vw;right:4vw;height:2px;background:var(--line-lime)}
+.hero-court .baseline.b1{top:24%}.hero-court .baseline.b2{bottom:170px}
+.hero-court .center{position:absolute;left:50%;top:24%;bottom:170px;width:2px;background:var(--line-lime)}
+.hero-court .net{position:absolute;left:4vw;right:4vw;top:58%;height:1px;background:repeating-linear-gradient(90deg,var(--line-lime) 0 7px,transparent 7px 14px)}
+.hero-glow{position:absolute;top:-10%;left:50%;transform:translateX(-50%);width:80vw;height:60vw;border-radius:50%;background:radial-gradient(circle,rgba(204,255,0,.08),transparent 60%);pointer-events:none}
+.bouncer{position:absolute;width:38px;height:38px;border-radius:50%;background:var(--lime);box-shadow:0 0 24px rgba(204,255,0,.55);z-index:3;will-change:transform}
+.bouncer::before,.bouncer::after{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid rgba(8,12,6,.5);clip-path:inset(0 0 50% 0)}
+.bouncer::after{transform:rotate(180deg)}
+.bouncer-shadow{position:absolute;width:38px;height:9px;border-radius:50%;background:rgba(0,0,0,.5);filter:blur(3px);z-index:2}
+.kicker{font-family:var(--f-mono);font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;color:var(--lime);margin-bottom:20px;display:flex;align-items:center;gap:12px}
+.kicker::before{content:"";width:30px;height:1px;background:var(--lime)}
+.hero h1{font-size:clamp(3rem,11vw,9.5rem);position:relative;z-index:4}
+.hero h1 .out{-webkit-text-stroke:2px var(--chalk);color:transparent}
+.hero-row{display:flex;align-items:flex-end;justify-content:space-between;gap:40px;margin:30px 0 0;padding-bottom:60px;flex-wrap:wrap;position:relative;z-index:4}
+.hero-sub{max-width:430px;color:var(--ash);font-size:1.05rem}
+.hero-sub b{color:var(--chalk)}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+.serve{font-family:var(--f-mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--lime);border:1px solid var(--line-lime);border-radius:100px;padding:7px 15px;display:inline-block;margin-top:14px}
+.term-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.term{background:var(--surf);border:1px solid var(--line);border-radius:var(--radius);padding:24px 20px;text-decoration:none;color:var(--chalk);transition:border-color .25s,background .25s,transform .25s;display:flex;flex-direction:column;gap:26px;position:relative;overflow:hidden}
+.term::after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;background:var(--lime);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.term:hover{transform:translateY(-4px);background:var(--surf2)}
+.term:hover::after{transform:scaleX(1)}
+.term .tcode{font-family:var(--f-mono);font-size:.62rem;letter-spacing:.2em;color:var(--lime)}
+.term h3{font-family:var(--f-display);text-transform:uppercase;font-size:1.4rem;letter-spacing:.01em}
+.term .tcount{font-family:var(--f-mono);font-size:.62rem;letter-spacing:.1em;color:var(--ash)}
+@media(max-width:1000px){.term-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.term-grid{grid-template-columns:1fr}}
+.test-wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:50px;align-items:center}
+@media(max-width:900px){.test-wrap{grid-template-columns:1fr}}
+.test-visual{background:var(--surf);border:1px solid var(--line);border-radius:var(--radius);padding:34px;display:grid;place-items:center;position:relative;overflow:hidden;min-height:330px}
+.test-visual::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:1px;background:var(--line-lime)}
+.test-visual img{max-height:280px;filter:brightness(.96);position:relative;z-index:1}
+.scan-line{position:absolute;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--lime),transparent);box-shadow:0 0 16px var(--lime);top:0;opacity:0}
+.test-visual.scanning .scan-line{animation:scan 1.4s cubic-bezier(.4,0,.6,1) forwards}
+@keyframes scan{0%{top:0;opacity:1}90%{opacity:1}100%{top:100%;opacity:0}}
+.test-tags{position:absolute;bottom:18px;left:20px;font-family:var(--f-mono);font-size:.6rem;letter-spacing:.06em;color:var(--lime);z-index:2}
+.tstep{display:flex;gap:18px;padding:20px 0;border-bottom:1px solid var(--line)}
+.tstep:last-child{border-bottom:none}
+.tstep .num{font-family:var(--f-display);color:var(--lime);font-size:1.4rem;line-height:1;flex:none;width:42px}
+.tstep h4{font-weight:600;font-size:1.05rem;margin-bottom:4px}
+.tstep p{color:var(--ash);font-size:.9rem}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:64px}
+.stat{background:var(--surf);border:1px solid var(--line);border-radius:var(--radius);padding:28px;position:relative;overflow:hidden}
+.stat::before{content:"";position:absolute;top:14px;right:14px;width:10px;height:10px;border-radius:50%;background:var(--lime);box-shadow:0 0 12px var(--lime)}
+.stat b{font-family:var(--f-display);font-size:clamp(2.6rem,5vw,4rem);color:var(--lime);display:block;line-height:1;letter-spacing:.01em}
+.stat span{font-family:var(--f-mono);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ash);display:block;margin-top:10px}
+@media(max-width:760px){.stats{grid-template-columns:1fr}}
+.rate-strip{background:var(--turf);border:1px solid var(--line-lime);border-radius:var(--radius);padding:38px;display:grid;grid-template-columns:1fr auto;gap:30px;align-items:center}
+.rate-tiles{display:grid;grid-template-columns:repeat(4,minmax(120px,1fr));gap:10px}
+@media(max-width:1000px){.rate-strip{grid-template-columns:1fr}.rate-tiles{grid-template-columns:repeat(2,1fr)}}
+.tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:900px){.tgrid{grid-template-columns:1fr}}
+.tcard{background:var(--surf);border:1px solid var(--line);border-radius:var(--radius);padding:26px;display:flex;flex-direction:column;gap:14px}
+.tcard .stars{color:var(--lime);letter-spacing:3px;font-size:.85rem}
+.tcard p{font-size:.92rem}
+.tcard .who{font-family:var(--f-mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ash);margin-top:auto}
+.faq-item{border-bottom:1px solid var(--line)}
+.faq-q{width:100%;background:none;border:none;color:var(--chalk);font-family:var(--f-text);font-weight:600;font-size:1.05rem;text-align:left;padding:24px 0;display:flex;justify-content:space-between;align-items:center;gap:18px;cursor:none}
+.faq-q .ic{flex:none;width:32px;height:32px;border:1.5px solid var(--line);border-radius:50%;display:grid;place-items:center;color:var(--lime);transition:transform .3s,background .3s,color .3s}
+.faq-item.open .faq-q .ic{transform:rotate(45deg);background:var(--lime);color:var(--court)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(.22,1,.36,1)}
+.faq-a p{color:var(--ash);padding:0 50px 24px 0;font-size:.94rem}
+.final{padding:120px 4vw;text-align:center;background:var(--turf);border-top:1px solid var(--line-lime);position:relative;overflow:hidden}
+.final h2{font-size:clamp(2.6rem,8vw,6.5rem);margin-bottom:18px;position:relative;z-index:2}
+.final p{color:var(--ash);max-width:440px;margin:0 auto 30px;position:relative;z-index:2}
 </style>
 </head>
 <body>
-
-<div class="cursor" id="cursor"></div>
-
-<nav id="nav">
-  <a class="logo" href="#">yzzy<span>.</span></a>
-  <ul class="nav-links">
-    <li><a href="#cumpara">Cumpără</a></li>
-    <li><a href="#vinde">Vinde</a></li>
-    <li><a href="#service">Service</a></li>
-    <li><a href="#recenzii">Recenzii</a></li>
-    <li><a href="#faq">FAQ</a></li>
-  </ul>
-  <div class="nav-cta">
-    <a class="btn btn-ghost" href="https://wa.me/+40761053053">0761 053 053</a>
-    <button class="btn btn-ghost" id="cartBtn">Coș<span class="cart-count" id="cartCount">0</span></button>
-    <a class="btn btn-lime" href="#cumpara">Vezi stocul</a>
-  </div>
-</nav>
+<nav id="nav"></nav>
 
 <header class="hero">
-  <div class="hero-bg">
+  <div class="hero-court">
     <div class="hero-glow"></div>
-    <div class="hero-glow g2"></div>
+    <div class="baseline b1"></div>
+    <div class="net"></div>
+    <div class="baseline b2"></div>
+    <div class="center"></div>
+    <div class="bouncer-shadow" id="bShadow"></div>
+    <div class="bouncer" id="bouncer"></div>
   </div>
-  <h1>
-    <span class="line-mask"><span>Tehnologie</span></span>
-    <span class="line-mask"><span class="outline">la a doua</span></span>
-    <span class="line-mask"><span><em class="accent">viață</em>.</span></span>
-  </h1>
+  <div class="kicker">Suceava · România · Non-stop</div>
+  <h1 class="display">Gata<br><span class="out">de</span> <span class="lime">joc.</span></h1>
   <div class="hero-row">
     <div>
-      <div class="hero-kicker">Refurbished · Verificat · Garantat</div>
-      <p class="hero-sub">Telefoane second-hand <strong>verificate, testate și igienizate de profesioniști</strong>. Mai ieftine cu până la 40%, cu garanție de 2 ani și retur gratuit 30 de zile.</p>
+      <p class="hero-sub">Telefoane recondiționate, aduse în <b>formă de meci</b>. Garanție 2 ani, <b>retur gratuit 30 de zile</b> și livrare în 24h.</p>
+      <span class="serve">[ Service, set și meci — telefonul tău, ca nou ]</span>
     </div>
     <div class="hero-actions">
-      <a class="btn btn-lime" href="#cumpara">Cumpără un telefon ↗</a>
-      <a class="btn btn-ghost" href="#vinde">Vinde-l pe al tău</a>
+      <a class="btn btn-lime" href="catalog.html">Intră pe teren →</a>
+      <a class="btn btn-ghost" href="vinde.html">Schimbă-l pe al tău</a>
     </div>
   </div>
 </header>
 
-<div class="marquee" aria-hidden="true">
-  <div class="marquee-track">
-    <div class="marquee-item">
-      <span>Garanție 2 ani</span><i>✦</i><span>Retur gratuit 30 de zile</span><i>✦</i><span>Livrare în 24h</span><i>✦</i><span>Plata în rate</span><i>✦</i><span>Testat în 52 de puncte</span><i>✦</i>
-    </div>
-    <div class="marquee-item">
-      <span>Garanție 2 ani</span><i>✦</i><span>Retur gratuit 30 de zile</span><i>✦</i><span>Livrare în 24h</span><i>✦</i><span>Plata în rate</span><i>✦</i><span>Testat în 52 de puncte</span><i>✦</i>
-    </div>
-  </div>
-</div>
-
-<section id="service">
-  <div class="section-head reveal">
-    <h2 class="section-title">Alege <em>categoria</em></h2>
-    <span class="section-num">(01) — Catalog</span>
-  </div>
-  <div class="cat-grid">
-    <a class="cat-card reveal" data-cat="telefoane" href="https://yzzy.ro/magazin/categorie-telefoane/"><span class="emoji">📱</span><div><h3>Telefoane</h3><p>iPhone & Samsung, ca noi</p></div><span class="arrow">↗</span></a>
-    <a class="cat-card reveal" data-cat="laptopuri" href="https://yzzy.ro/magazin/categorie-laptopuri/"><span class="emoji">💻</span><div><h3>Laptopuri</h3><p>MacBook & ultrabook-uri</p></div><span class="arrow">↗</span></a>
-    <a class="cat-card reveal" data-cat="smartwatch" href="https://yzzy.ro/magazin/categorie-smart-watch/"><span class="emoji">⌚</span><div><h3>Smartwatch</h3><p>Apple Watch & Galaxy Watch</p></div><span class="arrow">↗</span></a>
-    <a class="cat-card reveal" data-cat="accesorii" href="https://yzzy.ro/categorie/accesorii/"><span class="emoji">🎧</span><div><h3>Accesorii</h3><p>Căști, huse, încărcătoare</p></div><span class="arrow">↗</span></a>
-  </div>
-</section>
-
-<section class="products" id="cumpara">
-  <div class="section-head reveal">
-    <h2 class="section-title">Nou <em>în stoc</em></h2>
-    <span class="section-num">(02) — Verificate & igienizate</span>
-  </div>
-  <div class="filters reveal" id="filters">
-    <button class="pill active" data-cat="noutati">Noutăți</button>
-    <button class="pill" data-cat="telefoane">Telefoane</button>
-    <button class="pill" data-cat="laptopuri">Laptopuri</button>
-    <button class="pill" data-cat="smartwatch">Smartwatch</button>
-    <button class="pill" data-cat="tablete">Tablete</button>
-    <button class="pill" data-cat="accesorii">Accesorii</button>
-  </div>
-  <div class="prod-grid" id="prodGrid">
-    <article class="prod-card reveal" data-href="https://yzzy.ro/magazin/categorie-telefoane/">
-      <div class="prod-visual"><span class="prod-tag">-31%</span>📱</div>
-      <h4>iPhone 14 Pro · 128 GB</h4>
-      <span class="prod-state">Stare: Excelentă · Baterie 92%</span>
-      <div class="prod-foot"><span class="prod-price"><s>4.599 lei</s>3.149 lei</span><button class="prod-add" aria-label="Adaugă în coș">+</button></div>
-    </article>
-    <article class="prod-card reveal" data-href="https://yzzy.ro/magazin/categorie-telefoane/">
-      <div class="prod-visual"><span class="prod-tag">Top vândut</span>📱</div>
-      <h4>Samsung S23 Ultra · 256 GB</h4>
-      <span class="prod-state">Stare: Foarte bună · Baterie 95%</span>
-      <div class="prod-foot"><span class="prod-price"><s>4.299 lei</s>3.399 lei</span><button class="prod-add" aria-label="Adaugă în coș">+</button></div>
-    </article>
-    <article class="prod-card reveal" data-href="https://yzzy.ro/magazin/categorie-laptopuri/">
-      <div class="prod-visual"><span class="prod-tag">-26%</span>💻</div>
-      <h4>MacBook Air M2 · 256 GB</h4>
-      <span class="prod-state">Stare: Excelentă · 41 cicluri</span>
-      <div class="prod-foot"><span class="prod-price"><s>5.899 lei</s>4.349 lei</span><button class="prod-add" aria-label="Adaugă în coș">+</button></div>
-    </article>
-    <article class="prod-card reveal" data-href="https://yzzy.ro/magazin/categorie-smart-watch/">
-      <div class="prod-visual"><span class="prod-tag">Nou intrat</span>⌚</div>
-      <h4>Apple Watch Ultra 2</h4>
-      <span class="prod-state">Stare: Ca nou · Baterie 99%</span>
-      <div class="prod-foot"><span class="prod-price"><s>3.799 lei</s>2.899 lei</span><button class="prod-add" aria-label="Adaugă în coș">+</button></div>
-    </article>
-  </div>
-  <div class="trust-strip reveal">
-    <div class="trust-item"><b>Mai ieftin</b><span>cu până la 40% față de nou</span></div>
-    <div class="trust-item"><b>Garanție 2 ani</b><span>la fel ca produsele noi</span></div>
-    <div class="trust-item"><b>Retur 30 de zile</b><span>gratuit, fără întrebări</span></div>
-    <div class="trust-item"><b>Plata în rate</b><span>UniCredit · BT · LeanPay · TBI</span></div>
-    <div class="trust-item"><b>Livrare 24h</b><span>oriunde în România</span></div>
-  </div>
-</section>
-
-<section class="sell" id="vinde">
-  <div class="sell-inner">
-    <div class="sell-head reveal">
-      <h2 class="section-title">Vinzi rapid,<br>în <em>două minute</em></h2>
-      <p>Evaluare instantă online, curier gratuit la ușa ta și banii în cont imediat după verificare. Fără negocieri, fără bătăi de cap.</p>
-    </div>
-    <div class="steps">
-      <div class="step reveal"><span class="step-num">(01)</span><h3>Descrie dispozitivul</h3><p>Completezi modelul și starea telefonului. Primești oferta pe loc, transparent.</p></div>
-      <div class="step reveal"><span class="step-num">(02)</span><h3>Trimite-l gratuit</h3><p>Curierul vine la tine, oriunde în România. Ambalare și transport pe costul nostru.</p></div>
-      <div class="step reveal"><span class="step-num">(03)</span><h3>Primești banii</h3><p>După verificarea tehnică, banii ajung direct în contul tău. Rapid și sigur.</p></div>
-    </div>
-    <div class="sell-cta reveal">
-      <a class="btn btn-lime" href="https://vinzi.yzzy.ro/chestionar">Evaluează-mi telefonul ↗</a>
-    </div>
-  </div>
-</section>
+<div class="scoreline" id="scoreline" aria-hidden="true"></div>
 
 <section>
+  <div class="sec-head reveal">
+    <h2 class="sec-title">Alege <em>terenul</em></h2>
+    <span class="sec-num"><b>01</b> / CATALOG</span>
+  </div>
+  <div class="term-grid" id="terminals"></div>
+</section>
+
+<section style="padding-top:0">
+  <div class="sec-head reveal">
+    <h2 class="sec-title">Intrate <em>în joc</em></h2>
+    <a class="pill" href="catalog.html">Tot lotul →</a>
+  </div>
+  <div class="pgrid" id="newGrid"></div>
+</section>
+
+<section class="court-bg">
+  <div class="sec-head reveal">
+    <h2 class="sec-title">Niciun telefon nu intră <em>neantrenat</em></h2>
+    <span class="sec-num"><b>02</b> / CONTROL TEHNIC</span>
+  </div>
+  <div class="test-wrap">
+    <div class="test-visual" id="scanBox">
+      <div class="scan-line"></div>
+      <img id="scanImg" src="" alt="Telefon în control tehnic">
+      <span class="test-tags" id="scanTags"></span>
+    </div>
+    <div>
+      <div class="tstep reveal"><span class="num">01</span><div><h4>Deschis și inspectat</h4><p>Fiecare dispozitiv e deschis, curățat și inspectat de tehnicieni cu peste 13 ani de experiență în service GSM.</p></div></div>
+      <div class="tstep reveal"><span class="num">02</span><div><h4>Testat bucată cu bucată</h4><p>Baterie, ecran, camere, senzori, conectivitate — nu intră pe teren până nu e în formă maximă.</p></div></div>
+      <div class="tstep reveal"><span class="num">03</span><div><h4>Igienizat și pregătit</h4><p>Curățat profesional, fotografiat exact așa cum ajunge la tine, gata de primul set.</p></div></div>
+      <div class="tstep reveal"><span class="num">04</span><div><h4>Garantat 2 ani</h4><p>Ca la produsele noi, plus 30 de zile în care poți da retur fără explicații.</p></div></div>
+    </div>
+  </div>
   <div class="stats">
-    <div class="stat reveal"><b data-count="12000">0</b><span>dispozitive cu a doua viață</span></div>
-    <div class="stat reveal"><b data-count="52">0</b><span>puncte de verificare tehnică</span></div>
-    <div class="stat reveal"><b data-count="4.9" data-decimal="1">0</b><span>rating Google din peste 1.000 de recenzii</span></div>
+    <div class="stat reveal"><b data-count="12000" data-suffix="+">0</b><span>dispozitive readuse în joc</span></div>
+    <div class="stat reveal"><b data-count="13" data-suffix="+">0</b><span>ani de experiență în service GSM</span></div>
+    <div class="stat reveal"><b data-count="4.9" data-dec="1">0</b><span>rating Google · peste 470 de recenzii</span></div>
   </div>
 </section>
 
-<section id="recenzii">
-  <div class="section-head reveal">
-    <h2 class="section-title">Oameni <em>mulțumiți</em></h2>
-    <span class="section-num">(03) — Recenzii Google ★ 4.9</span>
-  </div>
-  <div class="test-grid">
-    <div class="test-card reveal"><span class="test-stars">★★★★★</span><p>„Telefonul arăta impecabil, ca scos din cutie. Livrare a doua zi și factura cu garanție de 2 ani. Recomand cu încredere.”</p><div class="test-who"><span class="test-avatar">AM</span><div><b>Andreea M.</b><span>iPhone 13 Pro · Suceava</span></div></div></div>
-    <div class="test-card reveal"><span class="test-stars">★★★★★</span><p>„Am vândut vechiul S21 în 10 minute. Curierul a venit a doua zi, banii au intrat imediat după verificare. Totul transparent.”</p><div class="test-who"><span class="test-avatar">CI</span><div><b>Cristian I.</b><span>Trade-in · București</span></div></div></div>
-    <div class="test-card reveal"><span class="test-stars">★★★★★</span><p>„Ezitam să iau second-hand, dar bateria la 96% și returul de 30 de zile m-au convins. A trecut un an și merge perfect.”</p><div class="test-who"><span class="test-avatar">RD</span><div><b>Raluca D.</b><span>MacBook Air · Cluj</span></div></div></div>
-  </div>
-</section>
-
-<section id="faq">
-  <div class="section-head reveal">
-    <h2 class="section-title">Întrebări <em>frecvente</em></h2>
-    <span class="section-num">(04) — FAQ</span>
-  </div>
-  <div class="faq">
-    <div class="faq-item reveal">
-      <button class="faq-q">Ce înseamnă „verificat și testat de profesioniști”?<span class="ic">+</span></button>
-      <div class="faq-a"><p>Fiecare dispozitiv trece printr-un proces de verificare în 52 de puncte: baterie, ecran, camere, senzori, conectivitate. Apoi este igienizat profesional și primește certificatul tehnic YZZY.</p></div>
-    </div>
-    <div class="faq-item reveal">
-      <button class="faq-q">Cum funcționează garanția de 2 ani?<span class="ic">+</span></button>
-      <div class="faq-a"><p>Exact ca la un produs nou. Dacă apare orice defect care nu e cauzat de utilizare necorespunzătoare, reparăm sau înlocuim dispozitivul gratuit, în service-urile noastre proprii.</p></div>
-    </div>
-    <div class="faq-item reveal">
-      <button class="faq-q">Pot returna produsul dacă nu îmi place?<span class="ic">+</span></button>
-      <div class="faq-a"><p>Da, ai 30 de zile de retur gratuit, fără întrebări. Trimiți produsul înapoi pe costul nostru și primești banii integral.</p></div>
-    </div>
-    <div class="faq-item reveal">
-      <button class="faq-q">Cum primesc banii dacă îmi vând telefonul?<span class="ic">+</span></button>
-      <div class="faq-a"><p>După ce dispozitivul ajunge la noi și trece verificarea tehnică (de regulă în aceeași zi), banii sunt virați direct în contul tău bancar.</p></div>
-    </div>
-    <div class="faq-item reveal">
-      <button class="faq-q">Pot plăti în rate?<span class="ic">+</span></button>
-      <div class="faq-a"><p>Da, prin partenerii noștri de finanțare: UniCredit Consumer Financing, BT Direct, LeanPay și TBI Bank. Aprobarea durează câteva minute, direct online.</p></div>
-    </div>
-  </div>
-</section>
-
-<section class="final">
-  <h2 class="reveal">Alegerea<br>inteligentă.</h2>
-  <p class="reveal">Tehnologie premium, preț corect și zero compromisuri la calitate. Sustenabil pentru tine și pentru planetă.</p>
-  <a class="btn btn-dark reveal" href="#cumpara">Explorează stocul ↗</a>
-</section>
-
-<footer>
-  <div class="foot-grid">
-    <div class="foot-brand">
-      <a class="logo" href="#">yzzy<span>.</span></a>
-      <p>Telefoane și gadgeturi second-hand verificate, testate și igienizate. Suceava, Str. Ana Ipătescu, Nr. 5.</p>
-    </div>
+<section style="padding-top:0">
+  <div class="rate-strip reveal">
     <div>
-      <h5>Magazin</h5>
-      <ul><li><a href="https://yzzy.ro/magazin/categorie-telefoane/">Telefoane</a></li><li><a href="https://yzzy.ro/magazin/categorie-laptopuri/">Laptopuri</a></li><li><a href="https://yzzy.ro/magazin/categorie-smart-watch/">Smartwatch</a></li><li><a href="https://yzzy.ro/categorie/accesorii/">Accesorii</a></li><li><a href="https://yzzy.ro/">Reduceri</a></li></ul>
-    </div>
-    <div>
-      <h5>Servicii</h5>
-      <ul><li><a href="https://vinzi.yzzy.ro/chestionar">Vinde-ți telefonul</a></li><li><a href="https://yzzy.ro/service-iphone/">Service iPhone</a></li><li><a href="https://yzzy.ro/service-telefon-samsung/">Service Samsung</a></li><li><a href="https://yzzy.ro/">Piese originale</a></li></ul>
-    </div>
-    <div>
-      <h5>Contact</h5>
-      <ul><li><a href="tel:0761053053">0761 053 053</a></li><li><a href="https://wa.me/+40761053053">WhatsApp</a></li><li><a href="https://www.instagram.com/yzzy.ro/">Instagram</a></li><li><a href="https://www.tiktok.com/@yzzy.ro">TikTok</a></li><li><a href="https://www.facebook.com/yzzy.mobile">Facebook</a></li></ul>
-    </div>
-  </div>
-  <div class="foot-mega">YZZY</div>
-  <div class="foot-bottom">
-    <span>© 2026 YZZY · CIF RO44982632</span>
-    <span><a href="https://yzzy.ro/termeni-si-conditii/" style="color:inherit">Termeni & condiții</a> · <a href="https://yzzy.ro/politica-de-confidentialitate-2/" style="color:inherit">Politica de confidențialitate</a> · <a href="https://anpc.ro/" style="color:inherit">ANPC</a></span>
-  </div>
-</footer>
-
-<div class="overlay" id="overlay"></div>
-<div class="modal" id="modal">
-  <div class="modal-card">
-    <button class="modal-close" id="modalClose" aria-label="Închide">×</button>
-    <div class="modal-visual"><img id="mImg" src="" alt=""></div>
-    <div class="modal-info">
-      <span class="prod-tag" id="mTag"></span>
-      <h3 id="mName"></h3>
-      <span class="modal-price" id="mPrice"></span>
-      <p class="desc" id="mDesc"></p>
-      <ul class="modal-perks">
-        <li>Garanție 2 ani, ca la produsele noi</li>
-        <li>Retur gratuit 30 de zile</li>
-        <li>Livrare în 24h oriunde în România</li>
-        <li>Verificat în 52 de puncte & igienizat</li>
-      </ul>
-      <div class="modal-actions">
-        <button class="btn btn-dark" id="mAdd">Adaugă în coș</button>
-        <a class="btn btn-outline-ink" id="mLink" href="#" target="_blank" rel="noopener">Vezi pe yzzy.ro ↗</a>
+      <h2 class="sec-title" style="font-size:clamp(1.6rem,3.2vw,2.4rem);margin-bottom:10px">Rate fără dobândă.<br><em>Patru bănci, zero efort.</em></h2>
+      <p class="muted" style="font-size:.92rem;max-width:420px;margin-bottom:18px">Credit 100% online, aprobat în câteva minute. Alegi finanțatorul direct din coș.</p>
+      <div class="rate-tiles">
+        <a class="partner-tile" href="rate.html#unicredit"><img src="https://yzzy.ro/wp-content/uploads/2025/02/logo-unicredit-contrast-alb-2.jpg" alt="UniCredit Consumer Financing"></a>
+        <a class="partner-tile" href="rate.html#bt"><img src="https://yzzy.ro/wp-content/uploads/2025/02/Logo-Smart-by-BT-Direct-1-300x115.webp" alt="Smart by BT Direct"></a>
+        <a class="partner-tile" href="rate.html#leanpay"><img src="https://yzzy.ro/wp-content/uploads/2025/06/LP-logo-small-300x86.png" alt="LeanPay"></a>
+        <a class="partner-tile" href="rate.html#tbi"><img src="https://yzzy.ro/wp-content/uploads/2025/02/tbi-bank-logo.webp" alt="TBI Bank"></a>
       </div>
     </div>
+    <a class="btn btn-lime" href="rate.html">Calculează-ți rata →</a>
   </div>
-</div>
-<aside class="drawer" id="drawer">
-  <div class="drawer-head"><h4>Coșul tău</h4><button class="drawer-close" id="drawerClose" aria-label="Închide">×</button></div>
-  <div class="drawer-items" id="drawerItems"></div>
-  <div class="drawer-foot">
-    <div class="drawer-total"><span>Total</span><span id="cartTotal">0 lei</span></div>
-    <a class="btn btn-lime" id="checkoutBtn" style="width:100%;justify-content:center" href="https://yzzy.ro/magazin/categorie-telefoane/" target="_blank" rel="noopener">Finalizează comanda ↗</a>
-    <p class="drawer-note">Demo de design — comanda reală se finalizează pe platforma YZZY.</p>
-  </div>
-</aside>
+</section>
 
-<script src="products.js"></script>
+<section style="padding-top:0">
+  <div class="sec-head reveal">
+    <h2 class="sec-title">Galeria <em>fanilor</em></h2>
+    <span class="sec-num"><b>03</b> / RECENZII GOOGLE ★ 4.9</span>
+  </div>
+  <div class="tgrid">
+    <div class="tcard reveal"><span class="stars">★★★★★</span><p>„Telefonul arăta impecabil, ca scos din cutie. Livrare a doua zi și factură cu garanție de 2 ani. Recomand cu încredere."</p><span class="who">Andreea M. · iPhone 13 Pro · Suceava</span></div>
+    <div class="tcard reveal"><span class="stars">★★★★★</span><p>„Ezitam să iau recondiționat, dar bateria impecabilă și returul de 30 de zile m-au convins. După un an merge perfect."</p><span class="who">Raluca D. · MacBook Air · Cluj</span></div>
+    <div class="tcard reveal"><span class="stars">★★★★★</span><p>„Am plătit în rate prin BT Direct, aprobat în 10 minute, totul online. A doua zi telefonul era la mine."</p><span class="who">Cristian I. · Galaxy S24 · București</span></div>
+  </div>
+</section>
+
+<section style="padding-top:0" id="faq">
+  <div class="sec-head reveal">
+    <h2 class="sec-title">Întrebări <em>frecvente</em></h2>
+    <span class="sec-num"><b>04</b> / LINIA DE FOND</span>
+  </div>
+  <div style="max-width:840px">
+    <div class="faq-item reveal"><button class="faq-q">Ce înseamnă „în formă de meci"?<span class="ic">+</span></button>
+      <div class="faq-a"><p>Fiecare dispozitiv e deschis, inspectat și testat bucată cu bucată de tehnicieni cu peste 13 ani de experiență: baterie, ecran, camere, senzori, conectivitate. Apoi e igienizat profesional. Nu intră pe teren până nu e impecabil.</p></div></div>
+    <div class="faq-item reveal"><button class="faq-q">Cum funcționează garanția de 2 ani?<span class="ic">+</span></button>
+      <div class="faq-a"><p>Exact ca la un produs nou: 24 de luni pentru persoane fizice (12 luni pentru firme și pentru anumite categorii, cum ar fi Samsung Fold/Flip). Orice defect care nu e cauzat de utilizare necorespunzătoare se repară gratuit în service-ul nostru din Suceava.</p></div></div>
+    <div class="faq-item reveal"><button class="faq-q">Pot da retur dacă nu îmi place?<span class="ic">+</span></button>
+      <div class="faq-a"><p>Da, ai 30 de zile calendaristice de la primire în care te poți răzgândi. Produsul trebuie returnat în starea în care l-ai primit, iar banii se rambursează prin transfer bancar în maximum 30 de zile.</p></div></div>
+    <div class="faq-item reveal"><button class="faq-q">Cum plătesc în rate fără dobândă?<span class="ic">+</span></button>
+      <div class="faq-a"><p>Alegi finanțarea direct din coș: UniCredit Consumer Financing, Smart by BT Direct, LeanPay sau TBI Bank. Aprobarea durează câteva minute, 100% online.</p></div></div>
+    <div class="faq-item reveal"><button class="faq-q">Cât durează livrarea?<span class="ic">+</span></button>
+      <div class="faq-a"><p>De regulă 24 de ore, orientativ 1–3 zile lucrătoare în funcție de zonă. Livrarea e gratuită, prin curier, cu colet asigurat.</p></div></div>
+  </div>
+</section>
+
+<section class="final court-bg">
+  <h2 class="display reveal">Mingea e <span class="lime">la tine.</span></h2>
+  <p class="reveal">152 de telefoane în formă de meci, gata de primul set. Următorul serviciu e al tău.</p>
+  <a class="btn btn-lime reveal" href="catalog.html">Intră pe teren →</a>
+</section>
+
+<footer id="footer"></footer>
+
+<script src="data/catalog.js?v=1"></script>
+<script src="app.js?v=1"></script>
 <script>
-// catalog real din Store API-ul yzzy.ro, copt in products.js la build (vezi fetch_products.py)
-const CATALOG=window.YZZY_CATALOG||{noutati:window.YZZY_PRODUCTS||[]};
-const fmtLei=v=>new Intl.NumberFormat('ro-RO',{maximumFractionDigits:2}).format(v/100)+' lei';
-let activeList=[];
-function tagFor(p){
-  const pr=p.prices;
-  return p.on_sale&&pr.regular_price!==pr.price
-    ?('-'+Math.round((1-pr.price/pr.regular_price)*100)+'%'):p.condition;
-}
-function renderProducts(key){
-  const grid=document.getElementById('prodGrid'),list=CATALOG[key]||[];
-  if(!grid||!list.length)return;
-  activeList=list;
-  grid.innerHTML=list.map((p,i)=>{
-    const pr=p.prices,sale=p.on_sale&&pr.regular_price!==pr.price;
-    return `<article class="prod-card" data-idx="${i}">
-      <div class="prod-visual"><span class="prod-tag">${tagFor(p)}</span><img src="${p.image}" alt="${p.name}"></div>
-      <h4>${p.name}</h4>
-      <span class="prod-state">Stare: ${p.condition} · Garanție 2 ani</span>
-      <div class="prod-foot"><span class="prod-price">${sale?`<s>${fmtLei(pr.regular_price)}</s>`:''}${fmtLei(pr.price)}</span><button class="prod-add" aria-label="Adaugă în coș">+</button></div>
-    </article>`}).join('');
-}
-renderProducts('noutati');
+renderNav('index.html');
+renderScoreline(document.getElementById('scoreline'));
+renderFooter(document.getElementById('footer'));
 
-// filtre categorie: pills + cardurile mari de categorie
-function selectCategory(key){
-  document.querySelectorAll('.pill').forEach(x=>x.classList.toggle('active',x.dataset.cat===key));
-  renderProducts(key);
-}
-document.querySelectorAll('.pill').forEach(b=>b.addEventListener('click',()=>selectCategory(b.dataset.cat)));
-document.querySelectorAll('.cat-card[data-cat]').forEach(c=>c.addEventListener('click',e=>{
-  e.preventDefault();
-  selectCategory(c.dataset.cat);
-  document.querySelector('#cumpara').scrollIntoView({behavior:'smooth'});
+// terenuri (categorii) cu numar real de produse
+document.getElementById('terminals').innerHTML=CATS.map(c=>{
+  const n=P.filter(p=>p.cat===c.key).length;
+  return `<a class="term reveal" href="catalog.html?cat=${c.key}">
+    <span class="tcode">${COURT[c.key]||'TEREN'}</span>
+    <h3>${c.label}</h3>
+    <span class="tcount">[ ${n} ÎN LOT ] →</span></a>`;
+}).join('');
+
+// intrate in joc: 8 produse reale
+const newGrid=document.getElementById('newGrid');
+newGrid.innerHTML=P.filter(p=>p.cat==='telefoane').slice(0,4)
+  .concat(P.filter(p=>p.cat==='tablete').slice(0,1),P.filter(p=>p.cat==='laptopuri').slice(0,1),P.filter(p=>p.cat==='smartwatch').slice(0,1),P.filter(p=>p.cat==='accesorii').slice(0,1))
+  .map(cardHTML).join('');
+bindAddButtons(newGrid);
+
+// control tehnic: scanare pe un produs real
+const scanP=P.find(p=>p.cat==='telefoane');
+document.getElementById('scanImg').src=scanP.imgs[0];
+const scanBox=document.getElementById('scanBox'),scanTags=document.getElementById('scanTags');
+const sio=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;sio.unobserve(e.target);scanBox.classList.add('scanning');setTimeout(()=>{scanTags.textContent='[ BATERIE OK ] [ ECRAN OK ] [ DEBLOCAT ]'},1100);}),{threshold:.5});
+sio.observe(scanBox);
+
+// FAQ
+document.querySelectorAll('.faq-q').forEach(btn=>btn.addEventListener('click',()=>{
+  const item=btn.parentElement,ans=item.querySelector('.faq-a'),open=item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(o=>{o.classList.remove('open');o.querySelector('.faq-a').style.maxHeight=null});
+  if(!open){item.classList.add('open');ans.style.maxHeight=ans.scrollHeight+'px'}
 }));
 
-// modal produs + cos demo
-const overlay=document.getElementById('overlay'),modal=document.getElementById('modal'),drawer=document.getElementById('drawer');
-let modalProduct=null;
-function openModal(p){
-  modalProduct=p;
-  const pr=p.prices,sale=p.on_sale&&pr.regular_price!==pr.price;
-  document.getElementById('mImg').src=p.image_full||p.image;
-  document.getElementById('mImg').alt=p.name;
-  document.getElementById('mTag').textContent=tagFor(p);
-  document.getElementById('mName').textContent=p.name;
-  document.getElementById('mPrice').innerHTML=(sale?`<s>${fmtLei(pr.regular_price)}</s>`:'')+fmtLei(pr.price);
-  document.getElementById('mDesc').textContent=p.desc||'Dispozitiv verificat tehnic, igienizat profesional și pregătit pentru a doua viață.';
-  document.getElementById('mLink').href=p.url;
-  drawer.classList.remove('show');
-  overlay.classList.add('show');modal.classList.add('show');
-  document.body.style.overflow='hidden';
-}
-function closeAll(){
-  overlay.classList.remove('show');modal.classList.remove('show');drawer.classList.remove('show');
-  document.body.style.overflow='';
-}
-overlay.addEventListener('click',closeAll);
-document.getElementById('modalClose').addEventListener('click',closeAll);
-document.getElementById('drawerClose').addEventListener('click',closeAll);
-addEventListener('keydown',e=>{if(e.key==='Escape')closeAll()});
+// minge care sare in hero (fizica simpla)
+(function(){
+  const ball=document.getElementById('bouncer'),shadow=document.getElementById('bShadow');
+  if(!ball)return;
+  const court=ball.parentElement;
+  let W=court.clientWidth,H=court.clientHeight;
+  addEventListener('resize',()=>{W=court.clientWidth;H=court.clientHeight});
+  let x=W*0.18,y=H*0.3,vx=2.6,vy=0;
+  const g=0.42,floor=()=>H-176,damp=0.82,size=38;
+  let t=0,spin=0;
+  function frame(){
+    vy+=g;x+=vx;y+=vy;spin+=vx*0.8;
+    if(y>floor()){y=floor();vy*=-damp;vx*=0.995;if(Math.abs(vy)<2){vy=-14-Math.random()*6}}
+    if(x<10){x=10;vx=Math.abs(vx)}if(x>W-size-10){x=W-size-10;vx=-Math.abs(vx)}
+    ball.style.transform=`translate(${x}px,${y}px) rotate(${spin}deg)`;
+    const sc=Math.max(.3,1-(floor()-y)/floor()*0.7);
+    shadow.style.transform=`translate(${x}px,${floor()+30}px) scaleX(${sc})`;
+    shadow.style.opacity=sc*0.6;
+    requestAnimationFrame(frame);
+  }
+  frame();
+})();
 
-let cart=[];
-try{cart=JSON.parse(localStorage.getItem('yzzyCart'))||[]}catch(e){}
-function saveCart(){localStorage.setItem('yzzyCart',JSON.stringify(cart))}
-function renderCart(){
-  document.getElementById('cartCount').textContent=cart.length;
-  const box=document.getElementById('drawerItems');
-  box.innerHTML=cart.length?cart.map((it,i)=>`<div class="d-item">
-      <span class="thumb"><img src="${it.image}" alt=""></span>
-      <div><b>${it.name}</b><span>${fmtLei(it.price)}</span></div>
-      <button class="rm" data-i="${i}" aria-label="Șterge">×</button>
-    </div>`).join(''):'<p class="drawer-empty">Coșul e gol deocamdată.</p>';
-  document.getElementById('cartTotal').textContent=fmtLei(cart.reduce((s,it)=>s+it.price,0));
-  if(cart.length)document.getElementById('checkoutBtn').href=cart[0].url;
-}
-function openDrawer(){
-  modal.classList.remove('show');
-  overlay.classList.add('show');drawer.classList.add('show');
-  document.body.style.overflow='hidden';
-}
-function addToCart(p){
-  cart.push({name:p.name,price:+p.prices.price,image:p.image,url:p.url});
-  saveCart();renderCart();openDrawer();
-}
-document.getElementById('cartBtn').addEventListener('click',openDrawer);
-document.getElementById('mAdd').addEventListener('click',()=>{if(modalProduct)addToCart(modalProduct)});
-document.getElementById('drawerItems').addEventListener('click',e=>{
-  const rm=e.target.closest('.rm');
-  if(rm){cart.splice(+rm.dataset.i,1);saveCart();renderCart()}
-});
-renderCart();
-
-// click pe card: "+" adauga in cos, restul deschide pagina de produs (modal)
-document.getElementById('prodGrid').addEventListener('click',e=>{
-  const card=e.target.closest('.prod-card');
-  if(!card)return;
-  const p=activeList[+card.dataset.idx];
-  if(!p)return;
-  if(e.target.closest('.prod-add'))addToCart(p);else openModal(p);
-});
-
-// nav scroll state
-const nav=document.getElementById('nav');
-addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>40),{passive:true});
-
-// custom cursor
-const cur=document.getElementById('cursor');
-addEventListener('mousemove',e=>{cur.style.left=e.clientX+'px';cur.style.top=e.clientY+'px'});
-document.addEventListener('mouseover',e=>cur.classList.toggle('is-hover',!!e.target.closest('a,button,.prod-card')));
-
-// reveal on scroll
-const io=new IntersectionObserver(es=>es.forEach(e=>{
-  if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}
-}),{threshold:.12});
-document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-
-// FAQ accordion
-document.querySelectorAll('.faq-q').forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    const item=btn.parentElement,ans=item.querySelector('.faq-a'),open=item.classList.contains('open');
-    document.querySelectorAll('.faq-item.open').forEach(o=>{o.classList.remove('open');o.querySelector('.faq-a').style.maxHeight=null});
-    if(!open){item.classList.add('open');ans.style.maxHeight=ans.scrollHeight+'px'}
-  });
-});
-
-// counters
-const cio=new IntersectionObserver(es=>es.forEach(e=>{
-  if(!e.isIntersecting)return;cio.unobserve(e.target);
-  const el=e.target,end=parseFloat(el.dataset.count),dec=+(el.dataset.decimal||0),t0=performance.now();
-  const tick=t=>{const p=Math.min((t-t0)/1600,1),v=end*(1-Math.pow(1-p,3));
-    el.textContent=dec?v.toFixed(dec):Math.round(v).toLocaleString('ro-RO');
-    if(p<1)requestAnimationFrame(tick);else el.textContent=(dec?end.toFixed(dec):end.toLocaleString('ro-RO'))+(end>=1000?'+':'')};
-  requestAnimationFrame(tick);
-}),{threshold:.5});
-document.querySelectorAll('[data-count]').forEach(el=>cio.observe(el));
+initReveal();initCounters();
 </script>
 </body>
 </html>

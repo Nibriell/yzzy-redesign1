@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Produs — YZZY</title>
+<link rel="stylesheet" href="theme.css?v=1">
+<style>
+.pdp{padding:120px 4vw 90px;max-width:1200px;margin:0 auto}
+.crumb{font-family:var(--f-mono);font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ash);margin-bottom:28px}
+.crumb a{color:var(--ash);text-decoration:none}.crumb a:hover{color:var(--lime)}
+.pdp-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px}
+@media(max-width:900px){.pdp-grid{grid-template-columns:1fr;gap:34px}}
+.gallery{position:sticky;top:90px;align-self:start}
+.gmain{background:var(--surf);border:1px solid var(--line);border-radius:var(--radius);height:420px;display:grid;place-items:center;padding:40px;position:relative;overflow:hidden}
+.gmain::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:1px;background:var(--line-lime)}
+.gmain::after{content:"";position:absolute;left:6%;right:6%;top:50%;height:1px;background:var(--line-lime)}
+.gmain img{max-height:340px;max-width:90%;object-fit:contain;filter:brightness(.97);position:relative;z-index:1}
+.gthumbs{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+.gthumb{width:70px;height:70px;border:1.5px solid var(--line);border-radius:10px;background:var(--turf);display:grid;place-items:center;cursor:none;padding:8px;transition:border-color .2s}
+.gthumb.active{border-color:var(--lime)}
+.gthumb img{max-width:100%;max-height:100%;object-fit:contain}
+.scan-badge{position:absolute;top:16px;right:16px;z-index:2;font-family:var(--f-mono);font-size:.58rem;letter-spacing:.1em;color:var(--court);background:var(--lime);padding:5px 12px;border-radius:100px;font-weight:700}
+.brand-line{font-family:var(--f-mono);font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--lime);margin-bottom:12px}
+.pdp h1{font-family:var(--f-display);text-transform:uppercase;font-size:clamp(1.9rem,4vw,3rem);line-height:1;margin-bottom:16px;letter-spacing:.01em}
+.price-row{display:flex;align-items:baseline;gap:14px;margin:20px 0}
+.price-row .now{font-family:var(--f-display);font-size:2.8rem;color:var(--lime);letter-spacing:.02em}
+.price-row .old{font-family:var(--f-mono);font-size:1rem;color:var(--ash);text-decoration:line-through}
+.price-row .save{font-family:var(--f-mono);font-size:.62rem;letter-spacing:.1em;color:var(--court);background:var(--lime);padding:5px 11px;border-radius:100px;font-weight:700}
+.rate-hint{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.04em;color:var(--ash);margin-bottom:22px}
+.rate-hint b{color:var(--lime)}.rate-hint a{color:var(--lime)}
+.spec-board{background:var(--surf);border:1px solid var(--line);border-radius:var(--radius);margin:24px 0;overflow:hidden}
+.spec-row{display:flex;justify-content:space-between;gap:14px;padding:12px 18px;border-bottom:1px solid var(--line);font-family:var(--f-mono);font-size:.72rem;letter-spacing:.05em;text-transform:uppercase}
+.spec-row:last-child{border-bottom:none}
+.spec-row span:first-child{color:var(--ash)}.spec-row span:last-child{color:var(--chalk)}
+.spec-row .ok{color:var(--lime)}
+.buy-row{display:flex;gap:12px;align-items:center;margin:24px 0}
+.qty{display:flex;align-items:center;border:1.5px solid var(--line);border-radius:100px;overflow:hidden}
+.qty button{width:42px;height:46px;background:var(--surf);border:none;color:var(--lime);font-size:1.2rem;cursor:none}
+.qty span{width:44px;text-align:center;font-family:var(--f-display);color:var(--chalk);font-size:1.2rem}
+.perks{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:24px 0}
+.perk{display:flex;gap:10px;align-items:flex-start;font-size:.86rem;color:var(--ash)}
+.perk b{color:var(--lime);font-family:var(--f-mono)}
+.desc-box{background:var(--surf);border:1px solid var(--line);border-radius:var(--radius);padding:24px;margin-top:30px}
+.desc-box h3{font-family:var(--f-display);text-transform:uppercase;font-size:1.2rem;margin-bottom:12px;letter-spacing:.01em}
+.desc-box p{color:var(--ash);font-size:.92rem;line-height:1.7}
+.seal-row{display:flex;gap:18px;align-items:center;background:var(--turf);border:1px solid var(--line-lime);border-radius:var(--radius);padding:20px;margin-top:24px}
+.seal-row p{font-size:.86rem}.seal-row p span{color:var(--ash)}
+.seal{width:118px;height:118px;flex:none;position:relative;display:grid;place-items:center}
+.seal svg{position:absolute;inset:0;animation:spin 20s linear infinite}
+.seal .core{width:48px;height:48px;border-radius:50%;background:var(--lime);color:var(--court);display:grid;place-items:center;font-family:var(--f-display);font-size:16px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.related{padding:0 4vw 90px;max-width:1200px;margin:0 auto}
+.partner-mini{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+.partner-mini img{height:22px;background:var(--chalk);border-radius:5px;padding:3px 7px}
+</style>
+</head>
+<body>
+<nav id="nav"></nav>
+
+<main class="pdp" id="pdp"></main>
+<section class="related">
+  <div class="sec-head reveal"><h2 class="sec-title">Pe <em>același teren</em></h2></div>
+  <div class="pgrid" id="related"></div>
+</section>
+
+<footer id="footer"></footer>
+
+<script src="data/catalog.js?v=1"></script>
+<script src="app.js?v=1"></script>
+<script>
+renderNav('catalog.html');
+renderFooter(document.getElementById('footer'));
+
+const p=byId(qs('id'))||P[0];
+document.title=`${p.brand} ${p.name} — YZZY`;
+const sale=p.on_sale&&p.regular>p.price;
+const catLabel=(CATS.find(c=>c.key===p.cat)||{}).label||'Catalog';
+let qty=1;
+
+document.getElementById('pdp').innerHTML=`
+<div class="crumb"><a href="index.html">Acasă</a> / <a href="catalog.html?cat=${p.cat}">${catLabel}</a> / ${p.name}</div>
+<div class="pdp-grid">
+  <div class="gallery">
+    <div class="gmain" id="gmain">
+      <span class="scan-badge">[ ÎN FORMĂ DE MECI ]</span>
+      <img id="gimg" src="${p.imgs[0]}" alt="${p.name}">
+    </div>
+    <div class="gthumbs" id="gthumbs">
+      ${p.imgs.map((src,i)=>`<div class="gthumb${i===0?' active':''}" data-i="${i}"><img src="${src}" alt=""></div>`).join('')}
+    </div>
+  </div>
+  <div>
+    <div class="brand-line">${p.brand||'YZZY'} · ${catLabel} · Cod ${p.id.slice(0,14).toUpperCase()}</div>
+    <h1>${p.brand?p.brand+' ':''}${p.name}</h1>
+    <div class="price-row">
+      <span class="now">${fmtLei(p.price)}</span>
+      ${sale?`<span class="old">${fmtLei(p.regular)}</span><span class="save">−${Math.round((1-p.price/p.regular)*100)}%</span>`:''}
+    </div>
+    <div class="rate-hint">sau <b>${fmtLei(Math.round(p.price/12))}</b>/lună în 12 rate fără dobândă · <a href="rate.html">vezi finanțarea →</a></div>
+    <div class="spec-board">
+      <div class="spec-row"><span>Stare</span><span class="ok">${p.condition}</span></div>
+      <div class="spec-row"><span>Garanție</span><span>2 ani (24 luni)</span></div>
+      <div class="spec-row"><span>Control tehnic</span><span class="ok">[ TRECUT ]</span></div>
+      <div class="spec-row"><span>Livrare</span><span>24h · gratuită</span></div>
+      <div class="spec-row"><span>Retur</span><span>30 de zile</span></div>
+    </div>
+    <div class="buy-row">
+      <div class="qty"><button id="qMinus" aria-label="Mai puțin">−</button><span id="qVal">1</span><button id="qPlus" aria-label="Mai mult">+</button></div>
+      <button class="btn btn-lime" id="addBtn" style="flex:1">Adaugă în coș →</button>
+    </div>
+    <div class="perks">
+      <div class="perk"><b>✓</b><span>Garanție 2 ani, ca la produsele noi</span></div>
+      <div class="perk"><b>✓</b><span>Retur gratuit 30 de zile, fără explicații</span></div>
+      <div class="perk"><b>✓</b><span>Livrare în 24h, colet asigurat</span></div>
+      <div class="perk"><b>✓</b><span>Testat de tehnicieni, nu de o ștampilă</span></div>
+    </div>
+    <div class="seal-row">
+      ${sealHTML()}
+      <p><b>Niciun telefon nu intră neantrenat.</b><br><span>Acest dispozitiv a fost deschis, testat bucată cu bucată și igienizat în service-ul YZZY din Suceava înainte de a intra pe teren.</span></p>
+    </div>
+    <div class="partner-mini">
+      <img src="https://yzzy.ro/wp-content/uploads/2025/02/logo-unicredit-contrast-alb-2.jpg" alt="UniCredit">
+      <img src="https://yzzy.ro/wp-content/uploads/2025/02/Logo-Smart-by-BT-Direct-1-300x115.webp" alt="Smart by BT">
+      <img src="https://yzzy.ro/wp-content/uploads/2025/06/LP-logo-small-300x86.png" alt="LeanPay">
+      <img src="https://yzzy.ro/wp-content/uploads/2025/02/tbi-bank-logo.webp" alt="TBI Bank">
+    </div>
+  </div>
+</div>
+${p.desc||p.short?`<div class="desc-box"><h3>Despre acest jucător</h3><p>${p.desc||p.short}</p></div>`:''}`;
+
+const gimg=document.getElementById('gimg');
+document.getElementById('gthumbs').addEventListener('click',e=>{
+  const t=e.target.closest('.gthumb');if(!t)return;
+  document.querySelectorAll('.gthumb').forEach(x=>x.classList.remove('active'));
+  t.classList.add('active');gimg.src=p.imgs[+t.dataset.i];
+});
+const qVal=document.getElementById('qVal');
+document.getElementById('qMinus').addEventListener('click',()=>{qty=Math.max(1,qty-1);qVal.textContent=qty});
+document.getElementById('qPlus').addEventListener('click',()=>{qty++;qVal.textContent=qty});
+document.getElementById('addBtn').addEventListener('click',()=>addToCart(p.id,qty));
+
+const rel=P.filter(x=>x.cat===p.cat&&x.id!==p.id).slice(0,4);
+const relEl=document.getElementById('related');
+relEl.innerHTML=rel.map(cardHTML).join('');
+bindAddButtons(relEl);
+initReveal();
+</script>
+</body>
+</html>

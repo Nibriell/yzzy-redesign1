@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Schimbă-ți telefonul — YZZY · Evaluare în 2 minute</title>
+<meta name="description" content="Schimbă-ți telefonul vechi în 2 minute: evaluare instantă, curier gratuit la ușa ta și banii în cont după verificare.">
+<link rel="stylesheet" href="theme.css?v=1">
+<style>
+.sell-hero{padding:130px 4vw 50px;display:grid;grid-template-columns:1.1fr .9fr;gap:50px;align-items:center}
+@media(max-width:900px){.sell-hero{grid-template-columns:1fr}}
+.sell-hero h1{font-size:clamp(2.6rem,6vw,5rem)}
+.sell-hero p{color:var(--ash);max-width:430px;margin:20px 0 28px}
+.conveyor{background:var(--surf);border:1px solid var(--line);border-radius:var(--radius);padding:30px;overflow:hidden;position:relative}
+.conveyor-label{font-family:var(--f-mono);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ash);margin-bottom:18px;display:flex;justify-content:space-between}
+.conveyor-track{display:flex;gap:14px;width:max-content;animation:conv 18s linear infinite}
+.conveyor:hover .conveyor-track{animation-play-state:paused}
+@keyframes conv{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.conv-item{width:90px;height:90px;border-radius:10px;background:var(--turf);display:grid;place-items:center;padding:10px;flex:none}
+.conv-item img{max-width:100%;max-height:100%;object-fit:contain}
+.conv-out{text-align:center;margin-top:20px;padding-top:18px;border-top:1px dashed var(--line)}
+.conv-out .lbl{font-family:var(--f-mono);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ash)}
+.conv-out .big{font-family:var(--f-display);color:var(--lime);font-size:clamp(1.9rem,5vw,2.8rem);letter-spacing:.02em}
+.steps3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;padding:40px 4vw 50px;max-width:1100px;margin:0 auto}
+@media(max-width:760px){.steps3{grid-template-columns:1fr}}
+.s3{background:var(--surf);border:1px solid var(--line);border-radius:var(--radius);padding:30px;transition:border-color .2s,transform .2s}
+.s3:hover{border-color:var(--lime);transform:translateY(-3px)}
+.s3 .n{font-family:var(--f-display);color:var(--lime);font-size:1.8rem;display:block;margin-bottom:18px;letter-spacing:.02em}
+.s3 h4{font-family:var(--f-display);text-transform:uppercase;font-size:1.2rem;margin-bottom:10px;letter-spacing:.01em}
+.s3 p{color:var(--ash);font-size:.9rem}
+.why{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;padding:0 4vw 80px;max-width:1200px;margin:0 auto}
+@media(max-width:760px){.why{grid-template-columns:1fr 1fr}}
+.why div{background:var(--turf);border:1px solid var(--line-lime);border-radius:12px;padding:20px}
+.why b{font-family:var(--f-display);font-size:1.1rem;color:var(--lime);display:block;margin-bottom:4px;letter-spacing:.01em}
+.why span{font-size:.8rem;color:var(--ash)}
+.final{padding:100px 4vw;text-align:center;background:var(--turf);border-top:1px solid var(--line-lime)}
+.final h2{font-size:clamp(2.2rem,5.5vw,4rem);margin-bottom:18px}
+.final p{color:var(--ash);max-width:420px;margin:0 auto 28px}
+</style>
+</head>
+<body>
+<nav id="nav"></nav>
+
+<header class="sell-hero court-bg">
+  <div>
+    <span class="sec-num" style="display:block;margin-bottom:16px">SCHIMB · BUYBACK</span>
+    <h1 class="display">Schimbă terenul. <em class="lime">Păstrează jocul.</em></h1>
+    <p>Îți dai telefonul vechi în 2 minute și pleci cu unul în formă de meci. Evaluare instantă, curier gratuit la ușa ta, banii în cont după verificare.</p>
+    <div style="display:flex;gap:12px;flex-wrap:wrap">
+      <a class="btn btn-lime" href="#estimare">Estimează-mi telefonul →</a>
+      <a class="btn btn-ghost" href="catalog.html">Vezi ce iei în schimb</a>
+    </div>
+  </div>
+  <div class="conveyor">
+    <div class="conveyor-label"><span>◄ SCHIMB DE TEREN</span><span>EVALUARE LIVE</span></div>
+    <div class="conveyor-track" id="convTrack"></div>
+    <div class="conv-out">
+      <div class="lbl">Primești până la</div>
+      <div class="big" id="convOut">2.350 lei</div>
+    </div>
+  </div>
+</header>
+
+<div class="scoreline" id="scoreline" aria-hidden="true"></div>
+
+<div class="sec-head reveal" style="padding:50px 4vw 0;margin-bottom:30px" id="estimare">
+  <h2 class="sec-title">Trei <em>pași</em>, două minute</h2>
+  <span class="sec-num">CUM SCHIMBI</span>
+</div>
+<div class="steps3">
+  <div class="s3 reveal"><span class="n">01</span><h4>Descrie dispozitivul</h4><p>Completezi modelul și starea telefonului. Primești oferta pe loc, transparent.</p></div>
+  <div class="s3 reveal"><span class="n">02</span><h4>Trimite-l gratuit</h4><p>Curierul vine la tine, oriunde în România. Ambalarea și transportul sunt pe noi.</p></div>
+  <div class="s3 reveal"><span class="n">03</span><h4>Primești banii</h4><p>După verificarea tehnică, banii ajung direct în contul tău. Rapid și sigur.</p></div>
+</div>
+
+<div class="sec-head reveal" style="padding:0 4vw;margin-bottom:24px">
+  <h2 class="sec-title">De ce <em>la noi</em></h2>
+</div>
+<div class="why">
+  <div class="reveal"><b>2 minute</b><span>Evaluare instantă, fără negocieri.</span></div>
+  <div class="reveal"><b>Curier gratuit</b><span>Ridicare de la ușa ta, oriunde în țară.</span></div>
+  <div class="reveal"><b>Bani în cont</b><span>Imediat după verificarea tehnică.</span></div>
+  <div class="reveal"><b>Schimb</b><span>Pleci direct cu un telefon în formă de meci.</span></div>
+</div>
+
+<section class="final">
+  <h2 class="display reveal">Gata de <em class="lime">schimb?</em></h2>
+  <p class="reveal">Estimarea durează mai puțin decât o pauză între seturi. Curierul face restul.</p>
+  <a class="btn btn-lime reveal" href="https://wa.me/+40761053053">Începe pe WhatsApp →</a>
+</section>
+
+<footer id="footer"></footer>
+
+<script src="data/catalog.js?v=1"></script>
+<script src="app.js?v=1"></script>
+<script>
+renderNav('vinde.html');
+renderScoreline(document.getElementById('scoreline'));
+renderFooter(document.getElementById('footer'));
+
+const imgs=P.filter(p=>p.cat==='telefoane').slice(0,8).map(p=>p.thumb);
+document.getElementById('convTrack').innerHTML=imgs.concat(imgs).map(src=>`<div class="conv-item"><img src="${src}" alt=""></div>`).join('');
+const vals=[2350,1890,3120,2680,4150];let vi=0;
+const out=document.getElementById('convOut');
+setInterval(()=>{vi=(vi+1)%vals.length;out.textContent=new Intl.NumberFormat('ro-RO').format(vals[vi])+' lei'},2600);
+initReveal();
+</script>
+</body>
+</html>
