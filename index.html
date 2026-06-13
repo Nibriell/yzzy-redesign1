@@ -210,6 +210,55 @@ section{padding:110px 4vw}
 .final p{max-width:480px;margin:0 auto 40px;font-weight:500}
 .final .btn-dark{font-size:1.05rem;padding:18px 38px}
 
+/* ---------- filtre categorie ---------- */
+.filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:42px}
+.pill{font-family:var(--font-d);font-weight:600;font-size:.85rem;padding:10px 20px;border-radius:100px;border:1px solid rgba(12,14,10,.18);background:none;color:var(--ink);cursor:pointer;transition:background .25s,color .25s,border-color .25s}
+.pill:hover{border-color:var(--ink)}
+.pill.active{background:var(--ink);color:var(--lime);border-color:var(--ink)}
+
+/* ---------- modal produs ---------- */
+.overlay{position:fixed;inset:0;background:rgba(12,14,10,.65);backdrop-filter:blur(8px);opacity:0;pointer-events:none;transition:opacity .35s;z-index:200}
+.overlay.show{opacity:1;pointer-events:auto}
+.modal{position:fixed;inset:0;z-index:210;display:grid;place-items:center;pointer-events:none;padding:20px}
+.modal-card{background:var(--cream);color:var(--ink);border-radius:28px;max-width:900px;width:100%;max-height:88vh;overflow:auto;display:grid;grid-template-columns:1fr 1fr;opacity:0;transform:translateY(34px) scale(.97);transition:opacity .4s,transform .45s cubic-bezier(.22,1,.36,1);pointer-events:none;position:relative}
+.modal.show .modal-card{opacity:1;transform:none;pointer-events:auto}
+.modal-close{position:absolute;top:18px;right:18px;width:40px;height:40px;border-radius:50%;border:1px solid rgba(12,14,10,.2);background:var(--cream);font-size:1.3rem;cursor:pointer;display:grid;place-items:center;z-index:1}
+.modal-visual{background:var(--cream-2);display:grid;place-items:center;min-height:380px;padding:30px}
+.modal-visual img{max-width:86%;max-height:340px;object-fit:contain;mix-blend-mode:multiply}
+.modal-info{padding:44px 40px;display:flex;flex-direction:column;gap:14px}
+.modal-info .prod-tag{position:static;align-self:flex-start}
+.modal-info h3{font-family:var(--font-d);font-size:1.7rem;font-weight:700;letter-spacing:-.02em;line-height:1.15}
+.modal-price{font-family:var(--font-d);font-weight:700;font-size:1.7rem}
+.modal-price s{font-size:1rem;color:#a3a195;font-weight:400;margin-right:10px}
+.modal-info p.desc{color:#74766a;font-size:.92rem}
+.modal-perks{list-style:none;display:flex;flex-direction:column;gap:8px;font-size:.9rem;margin:6px 0}
+.modal-perks li::before{content:"✦";color:#5a7d0a;margin-right:10px}
+.modal-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:auto;padding-top:10px}
+.btn-outline-ink{border:1px solid rgba(12,14,10,.3);color:var(--ink)}
+.btn-outline-ink:hover{border-color:var(--ink)}
+@media(max-width:760px){.modal-card{grid-template-columns:1fr}.modal-visual{min-height:260px}}
+
+/* ---------- cos demo ---------- */
+#cartBtn{position:relative}
+.cart-count{position:absolute;top:-7px;right:-7px;min-width:22px;height:22px;border-radius:100px;background:var(--lime);color:var(--ink);font-size:.7rem;font-weight:700;display:grid;place-items:center;padding:0 5px;font-family:var(--font-d)}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(430px,94vw);background:var(--ink);color:var(--cream);z-index:230;transform:translateX(105%);transition:transform .5s cubic-bezier(.22,1,.36,1);display:flex;flex-direction:column;padding:26px;border-left:1px solid rgba(241,239,231,.1)}
+.drawer.show{transform:none}
+.drawer-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px}
+.drawer-head h4{font-family:var(--font-d);font-size:1.3rem;letter-spacing:-.02em}
+.drawer-close{width:38px;height:38px;border-radius:50%;border:1px solid rgba(241,239,231,.25);background:none;color:var(--cream);font-size:1.2rem;cursor:pointer}
+.drawer-items{flex:1;overflow:auto;display:flex;flex-direction:column;gap:14px}
+.d-item{display:flex;gap:14px;align-items:center;border:1px solid rgba(241,239,231,.1);border-radius:16px;padding:12px}
+.d-item .thumb{width:62px;height:62px;border-radius:10px;background:var(--cream);display:grid;place-items:center;flex:none}
+.d-item .thumb img{max-width:84%;max-height:84%;object-fit:contain;mix-blend-mode:multiply}
+.d-item b{font-size:.88rem;display:block;line-height:1.3}
+.d-item span{font-size:.82rem;color:var(--grey)}
+.d-item .rm{margin-left:auto;background:none;border:none;color:var(--grey);font-size:1.1rem;cursor:pointer}
+.d-item .rm:hover{color:var(--lime)}
+.drawer-empty{color:var(--grey);text-align:center;margin-top:40%}
+.drawer-foot{border-top:1px solid rgba(241,239,231,.12);padding-top:18px;margin-top:16px}
+.drawer-total{display:flex;justify-content:space-between;font-family:var(--font-d);font-weight:700;font-size:1.15rem;margin-bottom:14px}
+.drawer-note{font-size:.74rem;color:var(--grey);margin-top:10px;text-align:center}
+
 /* ---------- footer ---------- */
 footer{padding:80px 4vw 40px;background:var(--ink)}
 .foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:70px}
@@ -239,7 +288,8 @@ footer{padding:80px 4vw 40px;background:var(--ink)}
   </ul>
   <div class="nav-cta">
     <a class="btn btn-ghost" href="https://wa.me/+40761053053">0761 053 053</a>
-    <a class="btn btn-lime" href="https://yzzy.ro/magazin/categorie-telefoane/">Vezi stocul</a>
+    <button class="btn btn-ghost" id="cartBtn">Coș<span class="cart-count" id="cartCount">0</span></button>
+    <a class="btn btn-lime" href="#cumpara">Vezi stocul</a>
   </div>
 </nav>
 
@@ -259,7 +309,7 @@ footer{padding:80px 4vw 40px;background:var(--ink)}
       <p class="hero-sub">Telefoane second-hand <strong>verificate, testate și igienizate de profesioniști</strong>. Mai ieftine cu până la 40%, cu garanție de 2 ani și retur gratuit 30 de zile.</p>
     </div>
     <div class="hero-actions">
-      <a class="btn btn-lime" href="https://yzzy.ro/magazin/categorie-telefoane/">Cumpără un telefon ↗</a>
+      <a class="btn btn-lime" href="#cumpara">Cumpără un telefon ↗</a>
       <a class="btn btn-ghost" href="#vinde">Vinde-l pe al tău</a>
     </div>
   </div>
@@ -282,10 +332,10 @@ footer{padding:80px 4vw 40px;background:var(--ink)}
     <span class="section-num">(01) — Catalog</span>
   </div>
   <div class="cat-grid">
-    <a class="cat-card reveal" href="https://yzzy.ro/magazin/categorie-telefoane/"><span class="emoji">📱</span><div><h3>Telefoane</h3><p>iPhone & Samsung, ca noi</p></div><span class="arrow">↗</span></a>
-    <a class="cat-card reveal" href="https://yzzy.ro/magazin/categorie-laptopuri/"><span class="emoji">💻</span><div><h3>Laptopuri</h3><p>MacBook & ultrabook-uri</p></div><span class="arrow">↗</span></a>
-    <a class="cat-card reveal" href="https://yzzy.ro/magazin/categorie-smart-watch/"><span class="emoji">⌚</span><div><h3>Smartwatch</h3><p>Apple Watch & Galaxy Watch</p></div><span class="arrow">↗</span></a>
-    <a class="cat-card reveal" href="https://yzzy.ro/categorie/accesorii/"><span class="emoji">🎧</span><div><h3>Accesorii</h3><p>Căști, huse, încărcătoare</p></div><span class="arrow">↗</span></a>
+    <a class="cat-card reveal" data-cat="telefoane" href="https://yzzy.ro/magazin/categorie-telefoane/"><span class="emoji">📱</span><div><h3>Telefoane</h3><p>iPhone & Samsung, ca noi</p></div><span class="arrow">↗</span></a>
+    <a class="cat-card reveal" data-cat="laptopuri" href="https://yzzy.ro/magazin/categorie-laptopuri/"><span class="emoji">💻</span><div><h3>Laptopuri</h3><p>MacBook & ultrabook-uri</p></div><span class="arrow">↗</span></a>
+    <a class="cat-card reveal" data-cat="smartwatch" href="https://yzzy.ro/magazin/categorie-smart-watch/"><span class="emoji">⌚</span><div><h3>Smartwatch</h3><p>Apple Watch & Galaxy Watch</p></div><span class="arrow">↗</span></a>
+    <a class="cat-card reveal" data-cat="accesorii" href="https://yzzy.ro/categorie/accesorii/"><span class="emoji">🎧</span><div><h3>Accesorii</h3><p>Căști, huse, încărcătoare</p></div><span class="arrow">↗</span></a>
   </div>
 </section>
 
@@ -293,6 +343,14 @@ footer{padding:80px 4vw 40px;background:var(--ink)}
   <div class="section-head reveal">
     <h2 class="section-title">Nou <em>în stoc</em></h2>
     <span class="section-num">(02) — Verificate & igienizate</span>
+  </div>
+  <div class="filters reveal" id="filters">
+    <button class="pill active" data-cat="noutati">Noutăți</button>
+    <button class="pill" data-cat="telefoane">Telefoane</button>
+    <button class="pill" data-cat="laptopuri">Laptopuri</button>
+    <button class="pill" data-cat="smartwatch">Smartwatch</button>
+    <button class="pill" data-cat="tablete">Tablete</button>
+    <button class="pill" data-cat="accesorii">Accesorii</button>
   </div>
   <div class="prod-grid" id="prodGrid">
     <article class="prod-card reveal" data-href="https://yzzy.ro/magazin/categorie-telefoane/">
@@ -398,7 +456,7 @@ footer{padding:80px 4vw 40px;background:var(--ink)}
 <section class="final">
   <h2 class="reveal">Alegerea<br>inteligentă.</h2>
   <p class="reveal">Tehnologie premium, preț corect și zero compromisuri la calitate. Sustenabil pentru tine și pentru planetă.</p>
-  <a class="btn btn-dark reveal" href="https://yzzy.ro/magazin/categorie-telefoane/">Explorează stocul ↗</a>
+  <a class="btn btn-dark reveal" href="#cumpara">Explorează stocul ↗</a>
 </section>
 
 <footer>
@@ -427,33 +485,142 @@ footer{padding:80px 4vw 40px;background:var(--ink)}
   </div>
 </footer>
 
+<div class="overlay" id="overlay"></div>
+<div class="modal" id="modal">
+  <div class="modal-card">
+    <button class="modal-close" id="modalClose" aria-label="Închide">×</button>
+    <div class="modal-visual"><img id="mImg" src="" alt=""></div>
+    <div class="modal-info">
+      <span class="prod-tag" id="mTag"></span>
+      <h3 id="mName"></h3>
+      <span class="modal-price" id="mPrice"></span>
+      <p class="desc" id="mDesc"></p>
+      <ul class="modal-perks">
+        <li>Garanție 2 ani, ca la produsele noi</li>
+        <li>Retur gratuit 30 de zile</li>
+        <li>Livrare în 24h oriunde în România</li>
+        <li>Verificat în 52 de puncte & igienizat</li>
+      </ul>
+      <div class="modal-actions">
+        <button class="btn btn-dark" id="mAdd">Adaugă în coș</button>
+        <a class="btn btn-outline-ink" id="mLink" href="#" target="_blank" rel="noopener">Vezi pe yzzy.ro ↗</a>
+      </div>
+    </div>
+  </div>
+</div>
+<aside class="drawer" id="drawer">
+  <div class="drawer-head"><h4>Coșul tău</h4><button class="drawer-close" id="drawerClose" aria-label="Închide">×</button></div>
+  <div class="drawer-items" id="drawerItems"></div>
+  <div class="drawer-foot">
+    <div class="drawer-total"><span>Total</span><span id="cartTotal">0 lei</span></div>
+    <a class="btn btn-lime" id="checkoutBtn" style="width:100%;justify-content:center" href="https://yzzy.ro/magazin/categorie-telefoane/" target="_blank" rel="noopener">Finalizează comanda ↗</a>
+    <p class="drawer-note">Demo de design — comanda reală se finalizează pe platforma YZZY.</p>
+  </div>
+</aside>
+
 <script src="products.js"></script>
 <script>
-// produse reale din Store API-ul yzzy.ro, coapte in products.js la build;
-// gasit pe acelasi domeniu cu magazinul, fetch-ul live de mai jos le actualizeaza
+// catalog real din Store API-ul yzzy.ro, copt in products.js la build (vezi fetch_products.py)
+const CATALOG=window.YZZY_CATALOG||{noutati:window.YZZY_PRODUCTS||[]};
 const fmtLei=v=>new Intl.NumberFormat('ro-RO',{maximumFractionDigits:2}).format(v/100)+' lei';
-function renderProducts(list){
-  const grid=document.getElementById('prodGrid');
-  if(!grid||!list||!list.length)return;
-  grid.innerHTML=list.map(p=>{
+let activeList=[];
+function tagFor(p){
+  const pr=p.prices;
+  return p.on_sale&&pr.regular_price!==pr.price
+    ?('-'+Math.round((1-pr.price/pr.regular_price)*100)+'%'):p.condition;
+}
+function renderProducts(key){
+  const grid=document.getElementById('prodGrid'),list=CATALOG[key]||[];
+  if(!grid||!list.length)return;
+  activeList=list;
+  grid.innerHTML=list.map((p,i)=>{
     const pr=p.prices,sale=p.on_sale&&pr.regular_price!==pr.price;
-    const tag=sale?('-'+Math.round((1-pr.price/pr.regular_price)*100)+'%'):p.condition;
-    return `<article class="prod-card reveal in" data-href="${p.url}">
-      <div class="prod-visual"><span class="prod-tag">${tag}</span><img src="${p.image}" alt="${p.name}"></div>
+    return `<article class="prod-card" data-idx="${i}">
+      <div class="prod-visual"><span class="prod-tag">${tagFor(p)}</span><img src="${p.image}" alt="${p.name}"></div>
       <h4>${p.name}</h4>
       <span class="prod-state">Stare: ${p.condition} · Garanție 2 ani</span>
-      <div class="prod-foot"><span class="prod-price">${sale?`<s>${fmtLei(pr.regular_price)}</s>`:''}${fmtLei(pr.price)}</span><button class="prod-add" aria-label="Vezi produsul">+</button></div>
+      <div class="prod-foot"><span class="prod-price">${sale?`<s>${fmtLei(pr.regular_price)}</s>`:''}${fmtLei(pr.price)}</span><button class="prod-add" aria-label="Adaugă în coș">+</button></div>
     </article>`}).join('');
 }
-renderProducts(window.YZZY_PRODUCTS);
-document.getElementById('prodGrid').addEventListener('click',e=>{
-  const c=e.target.closest('.prod-card[data-href]');
-  if(c)location.href=c.dataset.href;
+renderProducts('noutati');
+
+// filtre categorie: pills + cardurile mari de categorie
+function selectCategory(key){
+  document.querySelectorAll('.pill').forEach(x=>x.classList.toggle('active',x.dataset.cat===key));
+  renderProducts(key);
+}
+document.querySelectorAll('.pill').forEach(b=>b.addEventListener('click',()=>selectCategory(b.dataset.cat)));
+document.querySelectorAll('.cat-card[data-cat]').forEach(c=>c.addEventListener('click',e=>{
+  e.preventDefault();
+  selectCategory(c.dataset.cat);
+  document.querySelector('#cumpara').scrollIntoView({behavior:'smooth'});
+}));
+
+// modal produs + cos demo
+const overlay=document.getElementById('overlay'),modal=document.getElementById('modal'),drawer=document.getElementById('drawer');
+let modalProduct=null;
+function openModal(p){
+  modalProduct=p;
+  const pr=p.prices,sale=p.on_sale&&pr.regular_price!==pr.price;
+  document.getElementById('mImg').src=p.image_full||p.image;
+  document.getElementById('mImg').alt=p.name;
+  document.getElementById('mTag').textContent=tagFor(p);
+  document.getElementById('mName').textContent=p.name;
+  document.getElementById('mPrice').innerHTML=(sale?`<s>${fmtLei(pr.regular_price)}</s>`:'')+fmtLei(pr.price);
+  document.getElementById('mDesc').textContent=p.desc||'Dispozitiv verificat tehnic, igienizat profesional și pregătit pentru a doua viață.';
+  document.getElementById('mLink').href=p.url;
+  drawer.classList.remove('show');
+  overlay.classList.add('show');modal.classList.add('show');
+  document.body.style.overflow='hidden';
+}
+function closeAll(){
+  overlay.classList.remove('show');modal.classList.remove('show');drawer.classList.remove('show');
+  document.body.style.overflow='';
+}
+overlay.addEventListener('click',closeAll);
+document.getElementById('modalClose').addEventListener('click',closeAll);
+document.getElementById('drawerClose').addEventListener('click',closeAll);
+addEventListener('keydown',e=>{if(e.key==='Escape')closeAll()});
+
+let cart=[];
+try{cart=JSON.parse(localStorage.getItem('yzzyCart'))||[]}catch(e){}
+function saveCart(){localStorage.setItem('yzzyCart',JSON.stringify(cart))}
+function renderCart(){
+  document.getElementById('cartCount').textContent=cart.length;
+  const box=document.getElementById('drawerItems');
+  box.innerHTML=cart.length?cart.map((it,i)=>`<div class="d-item">
+      <span class="thumb"><img src="${it.image}" alt=""></span>
+      <div><b>${it.name}</b><span>${fmtLei(it.price)}</span></div>
+      <button class="rm" data-i="${i}" aria-label="Șterge">×</button>
+    </div>`).join(''):'<p class="drawer-empty">Coșul e gol deocamdată.</p>';
+  document.getElementById('cartTotal').textContent=fmtLei(cart.reduce((s,it)=>s+it.price,0));
+  if(cart.length)document.getElementById('checkoutBtn').href=cart[0].url;
+}
+function openDrawer(){
+  modal.classList.remove('show');
+  overlay.classList.add('show');drawer.classList.add('show');
+  document.body.style.overflow='hidden';
+}
+function addToCart(p){
+  cart.push({name:p.name,price:+p.prices.price,image:p.image,url:p.url});
+  saveCart();renderCart();openDrawer();
+}
+document.getElementById('cartBtn').addEventListener('click',openDrawer);
+document.getElementById('mAdd').addEventListener('click',()=>{if(modalProduct)addToCart(modalProduct)});
+document.getElementById('drawerItems').addEventListener('click',e=>{
+  const rm=e.target.closest('.rm');
+  if(rm){cart.splice(+rm.dataset.i,1);saveCart();renderCart()}
 });
-fetch('https://yzzy.ro/wp-json/wc/store/v1/products?per_page=8&orderby=date&order=desc')
-  .then(r=>r.json())
-  .then(d=>renderProducts(d.map(p=>({name:p.name,condition:'Verificat YZZY',prices:p.prices,on_sale:p.on_sale,image:p.images[0]?.thumbnail||p.images[0]?.src,url:p.permalink}))))
-  .catch(()=>{});
+renderCart();
+
+// click pe card: "+" adauga in cos, restul deschide pagina de produs (modal)
+document.getElementById('prodGrid').addEventListener('click',e=>{
+  const card=e.target.closest('.prod-card');
+  if(!card)return;
+  const p=activeList[+card.dataset.idx];
+  if(!p)return;
+  if(e.target.closest('.prod-add'))addToCart(p);else openModal(p);
+});
 
 // nav scroll state
 const nav=document.getElementById('nav');
@@ -462,21 +629,13 @@ addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>40),{passi
 // custom cursor
 const cur=document.getElementById('cursor');
 addEventListener('mousemove',e=>{cur.style.left=e.clientX+'px';cur.style.top=e.clientY+'px'});
-document.querySelectorAll('a,button').forEach(el=>{
-  el.addEventListener('mouseenter',()=>cur.classList.add('is-hover'));
-  el.addEventListener('mouseleave',()=>cur.classList.remove('is-hover'));
-});
+document.addEventListener('mouseover',e=>cur.classList.toggle('is-hover',!!e.target.closest('a,button,.prod-card')));
 
 // reveal on scroll
 const io=new IntersectionObserver(es=>es.forEach(e=>{
   if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}
 }),{threshold:.12});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-
-// product cards link to the live shop
-document.querySelectorAll('.prod-card[data-href]').forEach(card=>{
-  card.addEventListener('click',()=>location.href=card.dataset.href);
-});
 
 // FAQ accordion
 document.querySelectorAll('.faq-q').forEach(btn=>{
