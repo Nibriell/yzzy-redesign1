@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Studio de filmare — YZZY · concept TEREN</title>
+<meta name="description" content="Cum se transmite brandul YZZY pe fundalul de filmare: colțul de birou din care se filmează conținutul social, în tema TEREN (teren de tenis, lime pe închis).">
+<link rel="stylesheet" href="theme.css?v=2">
+<style>
+.st-hero{padding:130px 4vw 30px;max-width:1200px;margin:0 auto}
+.st-hero h1{font-size:clamp(2.6rem,7vw,5rem)}
+.st-hero p{color:var(--ash);max-width:560px;margin-top:18px;font-size:1.05rem}
+.st-wrap{max-width:1200px;margin:0 auto;padding:10px 4vw 40px}
+.set{background:var(--surf);border:1px solid var(--line);border-radius:20px;overflow:hidden}
+.set svg{display:block;width:100%;height:auto}
+.set-cap{font-family:var(--f-mono);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ash);padding:14px 20px;border-top:1px solid var(--line);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.set-cap b{color:var(--lime)}
+.els{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:1200px;margin:0 auto;padding:0 4vw 50px}
+@media(max-width:900px){.els{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.els{grid-template-columns:1fr}}
+.el{background:var(--surf);border:1px solid var(--line);border-radius:14px;padding:24px}
+.el .n{font-family:var(--f-mono);font-size:.62rem;letter-spacing:.14em;color:var(--lime);display:block;margin-bottom:12px}
+.el h3{font-family:var(--f-display);text-transform:uppercase;font-size:1.05rem;margin-bottom:8px;letter-spacing:.01em}
+.el p{color:var(--ash);font-size:.88rem}
+.why{max-width:1000px;margin:0 auto;padding:30px 4vw 90px}
+.why .band{background:var(--turf);border:1px solid var(--line-lime);border-radius:18px;padding:34px}
+.why .band h2{font-family:var(--f-display);text-transform:uppercase;font-size:clamp(1.5rem,3vw,2.2rem);letter-spacing:.01em;margin-bottom:14px}
+.why .band h2 em{font-style:normal;color:var(--lime)}
+.why .band p{color:var(--ash);max-width:640px}
+.why .band .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+.sec-num{font-family:var(--f-mono);font-size:.66rem;letter-spacing:.2em;color:var(--ash);display:block;margin-bottom:14px}
+</style>
+</head>
+<body>
+<nav id="nav"></nav>
+
+<header class="st-hero">
+  <span class="sec-num">BRAND ÎN SPAȚIUL FIZIC · CONCEPT TEREN</span>
+  <h1 class="display">Studio de <em class="lime">filmare</em></h1>
+  <p>Brandul nu se oprește la site. Colțul de birou din care filmați conținutul social poartă aceeași temă — așa fiecare clip devine reclamă de brand, nu doar conținut. Mai jos, cum arată setul în tema TEREN (teren de tenis, lime pe închis).</p>
+</header>
+
+<div class="st-wrap">
+  <div class="set">
+    <svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Schiță a colțului de filmare YZZY în tema TEREN: perete cu linii de teren, scoreboard YZZY, minge de tenis, birou cu produse, ring light și cameră pe trepied.">
+      <defs>
+        <radialGradient id="glow" cx="50%" cy="28%" r="62%">
+          <stop offset="0" stop-color="#CCFF00" stop-opacity="0.14"/>
+          <stop offset="1" stop-color="#CCFF00" stop-opacity="0"/>
+        </radialGradient>
+        <linearGradient id="floor" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#0C160B"/><stop offset="1" stop-color="#080C06"/>
+        </linearGradient>
+      </defs>
+      <rect width="800" height="500" fill="#080C06"/>
+      <rect width="800" height="500" fill="url(#glow)"/>
+      <!-- linii de teren pe perete -->
+      <g stroke="#CCFF00" stroke-opacity="0.10" stroke-width="2">
+        <line x1="60" y1="96" x2="740" y2="96"/>
+        <line x1="60" y1="300" x2="740" y2="300"/>
+        <line x1="400" y1="40" x2="400" y2="300"/>
+      </g>
+      <!-- fileu (net) dashed -->
+      <line x1="60" y1="200" x2="740" y2="200" stroke="#CCFF00" stroke-opacity="0.22" stroke-width="2" stroke-dasharray="7 7"/>
+      <!-- podea -->
+      <rect y="362" width="800" height="138" fill="url(#floor)"/>
+      <line x1="0" y1="362" x2="800" y2="362" stroke="#283021"/>
+      <!-- scoreboard YZZY pe perete -->
+      <g transform="translate(288,62)">
+        <rect x="0" y="0" width="224" height="98" rx="14" fill="#11160E" stroke="#283021"/>
+        <text x="112" y="58" text-anchor="middle" font-family="'Anton',sans-serif" font-size="50" fill="#CCFF00" letter-spacing="2">YZZY</text>
+        <text x="112" y="82" text-anchor="middle" font-family="'Space Mono',monospace" font-size="10" letter-spacing="3" fill="#878F79">GATA DE JOC</text>
+      </g>
+      <!-- minge de tenis pe perete dreapta -->
+      <g transform="translate(648,148)">
+        <circle r="30" fill="#CCFF00"/>
+        <path d="M-30 -8 Q-6 -20 18 -28" fill="none" stroke="#080C06" stroke-width="2.4" stroke-opacity="0.55"/>
+        <path d="M-18 28 Q-2 8 30 6" fill="none" stroke="#080C06" stroke-width="2.4" stroke-opacity="0.55"/>
+      </g>
+      <!-- strip burtiera -->
+      <rect x="270" y="172" width="260" height="28" rx="8" fill="#0C160B" stroke="#CCFF00" stroke-opacity="0.25"/>
+      <text x="400" y="191" text-anchor="middle" font-family="'Space Mono',monospace" font-size="10.5" letter-spacing="2" fill="#CCFF00">GARANȚIE 2 ANI ◆ LIVRARE 24H ◆ RATE</text>
+      <!-- birou / counter -->
+      <line x1="170" y1="330" x2="630" y2="330" stroke="#CCFF00" stroke-width="2"/>
+      <rect x="170" y="332" width="460" height="58" fill="#11160E" stroke="#283021"/>
+      <!-- produse pe birou -->
+      <g>
+        <rect x="225" y="300" width="26" height="44" rx="5" fill="#0E140C" stroke="#283021"/><rect x="229" y="305" width="18" height="30" rx="2" fill="#1C2A12"/>
+        <rect x="262" y="296" width="26" height="48" rx="5" fill="#0E140C" stroke="#283021"/><rect x="266" y="301" width="18" height="34" rx="2" fill="#1C2A12"/>
+        <rect x="520" y="300" width="26" height="44" rx="5" fill="#0E140C" stroke="#283021"/><rect x="524" y="305" width="18" height="30" rx="2" fill="#1C2A12"/>
+      </g>
+      <!-- gazda (silueta) cu rim-light lime -->
+      <g>
+        <ellipse cx="400" cy="332" rx="64" ry="10" fill="#000" opacity="0.45"/>
+        <path d="M362 332 Q360 270 400 256 Q440 270 438 332 Z" fill="#0C120A"/>
+        <circle cx="400" cy="238" r="26" fill="#0F150D"/>
+        <path d="M362 332 Q360 270 400 256" fill="none" stroke="#CCFF00" stroke-width="2.5" stroke-opacity="0.8"/>
+        <path d="M376 247 A26 26 0 0 0 386 218" fill="none" stroke="#CCFF00" stroke-width="2.5" stroke-opacity="0.7"/>
+      </g>
+      <!-- ring light fata-stanga -->
+      <line x1="120" y1="498" x2="128" y2="300" stroke="#2A2A2A" stroke-width="5"/>
+      <circle cx="128" cy="276" r="46" fill="none" stroke="#CCFF00" stroke-width="7" opacity="0.9"/>
+      <circle cx="128" cy="276" r="46" fill="#CCFF00" opacity="0.05"/>
+      <!-- camera / telefon pe trepied fata-dreapta -->
+      <g>
+        <line x1="672" y1="300" x2="640" y2="498" stroke="#2A2A2A" stroke-width="4"/>
+        <line x1="672" y1="300" x2="700" y2="498" stroke="#2A2A2A" stroke-width="4"/>
+        <line x1="672" y1="300" x2="672" y2="470" stroke="#2A2A2A" stroke-width="4"/>
+        <rect x="654" y="262" width="36" height="58" rx="7" fill="#0E140C" stroke="#CCFF00" stroke-opacity="0.5"/>
+        <rect x="659" y="268" width="26" height="40" rx="3" fill="#1C2A12"/>
+        <circle cx="672" cy="252" r="5" fill="#CCFF00"/>
+        <text x="672" y="240" text-anchor="middle" font-family="'Space Mono',monospace" font-size="9" fill="#CCFF00">REC</text>
+      </g>
+    </svg>
+    <div class="set-cap"><span>Schiță de set · colțul de filmare în tema <b>TEREN</b></span><span>Cadru vertical pentru <b>TikTok / Reels</b></span></div>
+  </div>
+</div>
+
+<section class="els" style="padding-top:0">
+  <div class="el"><span class="n">01</span><h3>Linii de teren pe perete</h3><p>Liniile și fileul proiectate pe peretele din spate — semnătura conceptului. Recognoscibil instant în orice clip, fără logo mare.</p></div>
+  <div class="el"><span class="n">02</span><h3>Scoreboard „YZZY"</h3><p>Un panou tip tabelă de scor cu marca și „gata de joc". Energie sportivă, încredere afișată.</p></div>
+  <div class="el"><span class="n">03</span><h3>Mingea-motiv + burtieră</h3><p>Mingea de tenis lime ca accent + o bandă cu garanție/livrare. Repetă mesajele cheie chiar și fără sonor.</p></div>
+  <div class="el"><span class="n">04</span><h3>Lumină lime, energică</h3><p>Ring light cu rim-light lime pe gazdă. Atmosferă de „vestiar", vie — nu lumină plată de birou.</p></div>
+  <div class="el"><span class="n">05</span><h3>Produse la vedere</h3><p>Telefoanele pe birou, sub lumină. Produsul e mereu în cadru, ca pe terenul de control tehnic.</p></div>
+  <div class="el"><span class="n">06</span><h3>Cadru vertical, gata de feed</h3><p>Setul e gândit pe verticală (9:16): gazda centrată, brandul în spate, produsul în prim-plan. Nativ pentru TikTok/Reels.</p></div>
+</section>
+
+<section class="why">
+  <div class="band">
+    <h2>Fundalul devine <em>reclama</em></h2>
+    <p>Se leagă direct de direcția de conținut „atelierul deschis": ton calm, echipa în cadru, procesul la vedere — pe un fundal cu identitate. Nu schimbăm ce filmați (produsul, procesul, oamenii), ci <b>spațiul</b> din care filmați. Service-ul rămâne service; aici vorbim doar de colțul de filmare/birou.</p>
+    <div class="cta">
+      <a class="btn btn-lime" href="index.html">Vezi conceptul TEREN →</a>
+      <a class="btn btn-ghost" href="prezentare.html">Înapoi la strategie</a>
+    </div>
+  </div>
+</section>
+
+<footer id="footer"></footer>
+
+<script src="data/catalog.js?v=1"></script>
+<script src="app.js?v=1"></script>
+<script>
+renderNav('');
+renderFooter(document.getElementById('footer'));
+</script>
+</body>
+</html>
